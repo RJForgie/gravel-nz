@@ -1,0 +1,11 @@
+{
+  "title": "Wellington Wilderness",
+  "date": "2024-10-12",
+  "location": "Wellington, New Zealand",
+  "distance": 95,
+  "elevation": 2100,
+  "description": "Experience the wild side of Wellington, traversing the Remutaka Range and coastal paths with stunning harbor views",
+  "registrationUrl": "https://wellingtonwilderness.example.com",
+  "terrain": "mixed",
+  "status": "upcoming"
+} 

@@ -1,0 +1,11 @@
+{
+  "title": "Taupo Traverse",
+  "date": "2024-11-23",
+  "location": "Taupo, New Zealand",
+  "distance": 140,
+  "elevation": 2800,
+  "description": "A spectacular journey around Lake Taupo, combining volcanic terrain with native forest trails and lakeside gravel paths",
+  "registrationUrl": "https://taupotraverse.example.com",
+  "terrain": "gravel",
+  "status": "upcoming"
+} 

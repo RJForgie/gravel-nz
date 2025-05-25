@@ -1,0 +1,11 @@
+{
+  "title": "Southern Epic",
+  "date": "2024-09-14",
+  "location": "Queenstown, New Zealand",
+  "distance": 120,
+  "elevation": 2500,
+  "description": "A challenging gravel race through the stunning Southern Alps, featuring epic climbs and breathtaking descents",
+  "registrationUrl": "https://southernepic.example.com",
+  "terrain": "gravel",
+  "status": "upcoming"
+} 
