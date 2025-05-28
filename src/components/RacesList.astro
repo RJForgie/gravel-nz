@@ -9,12 +9,6 @@ async function getAllRaces() {
   );
 }
 
-async function getUpcomingRaces() {
-  const races = await getAllRaces();
-  const now = new Date();
-  return races.filter(race => new Date(race.data.date) > now);
-}
-
 function groupRacesByMonth(races: CollectionEntry<"races">[]) {
   const groups = new Map<string, CollectionEntry<"races">[]>();
   
