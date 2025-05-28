@@ -2,10 +2,15 @@
   "title": "Otago Adventure",
   "date": "2024-08-17",
   "location": "Dunedin, New Zealand",
-  "distance": 85,
-  "elevation": 1800,
   "description": "Scenic coastal gravel adventure along the Otago Peninsula, mixing rugged coastline with rolling hills",
-  "registrationUrl": "https://otagoadventure.example.com",
   "terrain": "mixed",
-  "status": "upcoming"
+  "status": "upcoming",
+  "registrationUrl": "https://otagoadventure.example.com",
+  "raceOptions": [
+    {
+      "distance": 85,
+      "elevation": 1800,
+      "startTime": "07:00"
+    }
+  ]
 } 

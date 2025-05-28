@@ -6,12 +6,17 @@ const races = defineCollection({
     title: z.string(),
     date: z.string(),
     location: z.string(),
-    distance: z.number(),
-    elevation: z.number(),
     description: z.string(),
-    registrationUrl: z.string(),
     terrain: z.string(),
-    status: z.string()
+    status: z.string(),
+    registrationUrl: z.string().optional(),
+    raceOptions: z.array(z.object({
+      distance: z.number(),
+      elevation: z.number(),
+      startTime: z.string().optional(),
+      price: z.number().optional(),
+      registrationUrl: z.string().optional(),
+    }))
   })
 });
 
