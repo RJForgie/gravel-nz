@@ -13,9 +13,9 @@ const races = await getAllRaces();
 ---
 
 <div class="max-w-5xl mx-auto px-8 min-h-screen">
-  <div>
+  <div class="py-6 space-y-4">
     {races.map((race) => (
-      <div class="mb-6">
+      <div class="transform transition-all duration-300 hover:translate-y-[-2px] hover:shadow-2xl">
         <RaceCard race={race} client:load />
       </div>
     ))}
@@ -23,7 +23,7 @@ const races = await getAllRaces();
 
   {races.length === 0 && (
     <div class="text-center py-12">
-      <p class="text-lg">No upcoming races at the moment. Check back soon!</p>
+      <p class="text-lg text-neutral-300">No upcoming races at the moment. Check back soon!</p>
     </div>
   )}
 </div> 
