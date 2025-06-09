@@ -1,11 +1,52 @@
 ---
 import RacesList from '../components/RacesList.astro';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import gravelImage from '../assets/gravel.jpg';
 ---
 
 <Layout>
-	<div slot="left" class="text-white">
-		Gravel
+	<div slot="left" class="relative isolate h-full overflow-hidden">
+		<div class="absolute inset-0">
+			<Image
+				src={gravelImage}
+				alt=""
+				class="h-full w-full object-cover"
+				width={2000}
+				height={1333}
+				quality="mid"
+			/>
+			<div class="absolute inset-0 bg-gradient-to-br from-black/50 to-black/75 mix-blend-multiply"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"></div>
+		</div>
+		<div class="relative h-full flex flex-col items-center justify-center px-6 py-24 sm:px-24 xl:py-32">
+			<h2 class="mx-auto max-w-3xl text-center text-4xl font-semibold tracking-tight text-white sm:text-5xl drop-shadow-lg">
+				Gravel NZ
+			</h2>
+			<p class="mx-auto mt-6 max-w-lg text-center text-lg text-gray-100 font-medium drop-shadow">
+				Discover and explore New Zealand's best gravel cycling events.
+			</p>
+			<form class="mx-auto mt-10 flex max-w-md gap-x-4">
+				<label for="email-address" class="sr-only">
+					Email address
+				</label>
+				<input
+					id="email-address"
+					name="email"
+					type="email"
+					required
+					placeholder="Enter your email"
+					autocomplete="email"
+					class="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm/6"
+				/>
+				<button
+					type="submit"
+					class="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+				>
+					Notify me
+				</button>
+			</form>
+		</div>
 	</div>
 	<div slot="right">
 		<RacesList />
