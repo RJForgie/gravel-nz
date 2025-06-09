@@ -9,39 +9,17 @@ async function getAllRaces() {
   );
 }
 
-function groupRacesByMonth(races: CollectionEntry<"races">[]) {
-  const groups = new Map<string, CollectionEntry<"races">[]>();
-  
-  races.forEach(race => {
-    const date = new Date(race.data.date);
-    const monthYear = date.toLocaleDateString('en-NZ', { year: 'numeric', month: 'long' });
-    if (!groups.has(monthYear)) {
-      groups.set(monthYear, []);
-    }
-    groups.get(monthYear)?.push(race);
-  });
-
-  return Array.from(groups.entries());
-}
-
 const races = await getAllRaces();
-const groupedRaces = groupRacesByMonth(races);
 ---
 
 <div class="max-w-5xl mx-auto px-8 min-h-screen">
-  {groupedRaces.map(([monthYear, monthRaces], groupIndex) => (
-    <div class="mb-12">
-      <div class="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-10 py-4 mb-8">
-        <h2 class="text-2xl font-semibold">{monthYear}</h2>
+  <div>
+    {races.map((race) => (
+      <div class="mb-6">
+        <RaceCard race={race} client:load />
       </div>
-
-      <div class="space-y-8">
-        {monthRaces.map((race) => (
-          <RaceCard race={race} client:load />
-        ))}
-      </div>
-    </div>
-  ))}
+    ))}
+  </div>
 
   {races.length === 0 && (
     <div class="text-center py-12">
