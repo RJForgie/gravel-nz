@@ -17,7 +17,7 @@ export function RaceCard({ race }: RaceCardProps) {
         <dl className="flex flex-wrap">
           <div className="flex-auto pt-4 pl-4">
             <div className="flex items-baseline gap-x-3">
-              <dt className="text-xl font-semibold text-neutral-50">{data.title}</dt>
+              <dt className="text-xl font-semibold text-neutral-200">{data.title}</dt>
               <dd className="text-lg font-medium text-neutral-400">{mainRaceOption.distance}km</dd>
             </div>
           </div>
@@ -30,14 +30,14 @@ export function RaceCard({ race }: RaceCardProps) {
           <div className="mt-4 flex w-full flex-none gap-x-3 border-t border-neutral-800/80 px-4 pt-4">
             <dt className="flex-none">
               <span className="sr-only">Location</span>
-              <MapPinIcon aria-hidden="true" className="h-5 w-4 text-neutral-500" />
+              <MapPinIcon aria-hidden="true" className="h-5 w-4 text-neutral-2000" />
             </dt>
             <dd className="text-sm font-medium text-neutral-200">{data.location}</dd>
           </div>
           <div className="mt-2.5 flex w-full flex-none gap-x-3 px-4">
             <dt className="flex-none">
               <span className="sr-only">Date</span>
-              <CalendarDaysIcon aria-hidden="true" className="h-5 w-4 text-neutral-500" />
+              <CalendarDaysIcon aria-hidden="true" className="h-5 w-4 text-neutral-2000" />
             </dt>
             <dd className="text-sm text-neutral-400">
               <time dateTime={data.date}>
@@ -52,7 +52,7 @@ export function RaceCard({ race }: RaceCardProps) {
           <div className="mt-2.5 flex w-full flex-none gap-x-3 px-4">
             <dt className="flex-none">
               <span className="sr-only">Elevation</span>
-              <ArrowTrendingUpIcon aria-hidden="true" className="h-5 w-4 text-neutral-500" />
+              <ArrowTrendingUpIcon aria-hidden="true" className="h-5 w-4 text-neutral-2000" />
             </dt>
             <dd className="text-sm text-neutral-400">{mainRaceOption.elevation}m elevation gain</dd>
           </div>

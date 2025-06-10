@@ -47,9 +47,9 @@ const monthsWithRaces = new Set(races.map(race => {
             'text-sm font-medium rounded-md transition-all duration-200',
             'backdrop-blur-sm shadow-lg ring-1 ring-inset',
             {
-              'bg-[#4A7153] text-white hover:bg-[#5C8A66] ring-[#2C432F]/50 hover:shadow-xl': isCurrent && hasRaces,
-              'bg-[#4A7153] text-white ring-[#2C432F]/50': isCurrent && !hasRaces,
-              'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-white hover:shadow-xl ring-neutral-700/50': !isCurrent && hasRaces,
+              'bg-[#4A7153] text-neutral-200 hover:bg-[#5C8A66] ring-[#2C432F]/50 hover:shadow-xl': isCurrent && hasRaces,
+              'bg-[#4A7153] text-neutral-200 ring-[#2C432F]/50': isCurrent && !hasRaces,
+              'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl ring-neutral-700/50': !isCurrent && hasRaces,
               'bg-neutral-900/70 text-neutral-400 ring-neutral-700/50 cursor-default': !isCurrent && !hasRaces
             }
           ]}
