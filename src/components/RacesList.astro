@@ -44,24 +44,26 @@ function formatMonth(monthKey: string) {
 }
 ---
 
-<div class="max-w-5xl mx-auto px-8 min-h-screen">
-  <MonthNav races={races} />
-  
-  <div class="py-6 space-y-6">
-    {Object.entries(racesByMonth).map(([monthKey, monthRaces]) => (
-      <div id={monthKey} class="scroll-mt-8 space-y-4">
-        {monthRaces.map((race) => (
-          <div class="transition hover:-translate-y-0.5 hover:shadow-2xl">
-            <RaceCard race={race} client:load />
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-
-  {races.length === 0 && (
-    <div class="text-center py-12">
-      <p class="text-lg text-neutral-300">No upcoming races at the moment. Check back soon!</p>
+<div class="max-w-5xl mx-auto">
+  <div class="max-w-3xl mx-auto px-8">
+    <MonthNav races={races} />
+    
+    <div class="py-6 space-y-6">
+      {Object.entries(racesByMonth).map(([monthKey, monthRaces]) => (
+        <div id={monthKey} class="scroll-mt-8 space-y-4">
+          {monthRaces.map((race) => (
+            <div class="transition hover:-translate-y-0.5 hover:shadow-2xl">
+              <RaceCard race={race} client:load />
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
-  )}
+
+    {races.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-lg text-neutral-300">No upcoming races at the moment. Check back soon!</p>
+      </div>
+    )}
+  </div>
 </div> 
