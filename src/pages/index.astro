@@ -4,15 +4,55 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import gravelImage from '../assets/gravel.jpg';
 import HeroContent from '../components/HeroContent.astro';
+import { getCollection } from 'astro:content';
+
+// Get all races for structured data
+const races = await getCollection('races');
+
+// Generate structured data for all races
+const eventsStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": races.map((race, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "SportsEvent",
+      "name": race.data.title,
+      "description": race.data.description,
+      "startDate": race.data.date,
+      "location": {
+        "@type": "Place",
+        "name": race.data.location,
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "NZ",
+          "addressRegion": race.data.location.split(',')[0].trim()
+        }
+      },
+      "sport": "Cycling",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "offers": race.data.raceOptions.map(option => ({
+        "@type": "Offer",
+        "price": option.price || "TBA",
+        "priceCurrency": "NZD",
+        "validFrom": new Date().toISOString(),
+        "url": race.data.registrationUrl || "",
+        "availability": "https://schema.org/InStock"
+      }))
+    }
+  }))
+};
 ---
 
-<Layout>
+<Layout title="Gravel NZ - New Zealand's Gravel Races" description="Find upcoming gravel races in Aotearoa">
 	<div class="relative min-h-screen">
 		{/* Full-width background image */}
 		<div class="fixed inset-0 -z-10">
 			<Image
 				src={gravelImage}
-				alt=""
+				alt="Gravel road winding through New Zealand's stunning landscape"
 				class="h-full w-full object-cover"
 				width={2000}
 				height={1333}
@@ -49,4 +89,7 @@ import HeroContent from '../components/HeroContent.astro';
 			</div>
 		</div>
 	</div>
+
+	{/* Add structured data */}
+	<script type="application/ld+json" set:html={JSON.stringify(eventsStructuredData)} />
 </Layout>

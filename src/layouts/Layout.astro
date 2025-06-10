@@ -1,5 +1,21 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Gravel NZ - New Zealand's Premier Gravel Cycling Events",
+	description = "Discover and explore New Zealand's best gravel cycling events. Find upcoming gravel races, epic adventures, and challenging routes across Aotearoa's stunning landscapes."
+} = Astro.props;
+
+// Generate canonical URL safely
+const canonicalURL = new URL(
+	Astro.url.pathname,
+	Astro.site || 'http://localhost:4321'
+).toString();
 ---
 
 <!doctype html>
@@ -7,11 +23,54 @@ import '../styles/global.css';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="gravel cycling, New Zealand cycling, gravel races, cycling events, bike races NZ, gravel grinding, adventure cycling" />
+		<meta name="author" content="Gravel NZ" />
+		<meta name="robots" content="index, follow" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL('/og-image.jpg', canonicalURL)} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL('/og-image.jpg', canonicalURL)} />
+		
+		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<title>Astro Basics</title>
+		
+		<!-- JSON-LD for Event Organization -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Gravel NZ",
+				"url": canonicalURL,
+				"logo": new URL('/logo.png', canonicalURL),
+				"description": "New Zealand's premier platform for gravel cycling events and races across Aotearoa.",
+				"sameAs": [
+					"https://facebook.com/gravelnz",
+					"https://instagram.com/gravelnz",
+					"https://twitter.com/gravelnz"
+				]
+			}
+		</script>
+		
+		<title>{title}</title>
 	</head>
 	<body>
 		<main>

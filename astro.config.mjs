@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'http://www.gravel.nz', // Development URL (change this to your production URL when deploying)
   vite: {
     plugins: [tailwindcss()],
   },
