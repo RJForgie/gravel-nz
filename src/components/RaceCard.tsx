@@ -20,7 +20,7 @@ export function RaceCard({ race }: RaceCardProps) {
     <div className="w-full max-w-3xl">
       <h2 className="sr-only">Race Summary for {race.title}</h2>
       <div 
-        className="rounded-md shadow-xl ring-1 ring-neutral-700/50 backdrop-blur-sm bg-neutral-900/95"
+        className="rounded-sm shadow-xl ring-1 ring-neutral-700/50 backdrop-blur-sm bg-neutral-900/95"
         role="article"
       >
         <dl className="flex flex-wrap">
