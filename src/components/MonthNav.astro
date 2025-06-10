@@ -27,7 +27,7 @@ const monthsWithRaces = new Set(races.map(race => {
 }));
 ---
 
-<nav class="max-w-3xl">
+<nav aria-label="Race calendar navigation">
   <div class="grid grid-cols-2 gap-2 py-4">
     {months.map(({ key, date }) => {
       const month = date.toLocaleDateString('en-NZ', { month: 'long' });
@@ -36,29 +36,45 @@ const monthsWithRaces = new Set(races.map(race => {
                        date.getFullYear() === now.getFullYear();
       const hasRaces = monthsWithRaces.has(key);
       
-      const Element = hasRaces ? 'a' : 'div';
-      const props = hasRaces ? { href: `#${key}` } : {};
-      
-      return (
-        <Element
-          {...props}
-          class:list={[
-            'group relative flex items-center justify-center px-4 py-2',
-            'text-sm font-medium rounded-md transition-all duration-200',
-            'backdrop-blur-sm shadow-lg ring-1 ring-inset',
-            {
-              'bg-[#4A7153] text-neutral-200 hover:bg-[#5C8A66] ring-[#2C432F]/50 hover:shadow-xl': isCurrent && hasRaces,
-              'bg-[#4A7153] text-neutral-200 ring-[#2C432F]/50': isCurrent && !hasRaces,
-              'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl ring-neutral-700/50': !isCurrent && hasRaces,
-              'bg-neutral-900/70 text-neutral-400 ring-neutral-700/50 cursor-default': !isCurrent && !hasRaces
-            }
-          ]}
+      const baseClasses = [
+        'group relative flex items-center justify-center px-4 py-2',
+        'text-sm font-medium rounded-md transition-all duration-200',
+        'backdrop-blur-sm shadow-lg ring-1 ring-inset focus:outline-none focus:ring-2'
+      ];
+
+      const currentWithRacesClasses = 'bg-[#4A7153] text-neutral-200 hover:bg-[#5C8A66] ring-[#2C432F]/50 hover:shadow-xl focus:ring-[#2C432F]';
+      const currentNoRacesClasses = 'bg-[#4A7153] text-neutral-200 ring-[#2C432F]/50';
+      const nonCurrentWithRacesClasses = 'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl ring-neutral-700/50 focus:ring-neutral-500';
+      const nonCurrentNoRacesClasses = 'bg-neutral-900/70 text-neutral-400 ring-neutral-700/50 cursor-not-allowed';
+
+      const classes = [
+        ...baseClasses,
+        isCurrent 
+          ? (hasRaces ? currentWithRacesClasses : currentNoRacesClasses)
+          : (hasRaces ? nonCurrentWithRacesClasses : nonCurrentNoRacesClasses)
+      ].join(' ');
+
+      return hasRaces ? (
+        <a
+          href={`#${key}`}
+          class={classes}
+          aria-label={`View races for ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
         >
           <span class="flex flex-col items-center">
             <span class="font-semibold">{month}</span>
             <span class="text-xs opacity-80">{year}</span>
           </span>
-        </Element>
+        </a>
+      ) : (
+        <div
+          class={classes}
+          aria-label={`No races in ${month} ${year}`}
+        >
+          <span class="flex flex-col items-center">
+            <span class="font-semibold">{month}</span>
+            <span class="text-xs opacity-80">{year}</span>
+          </span>
+        </div>
       );
     })}
   </div>
