@@ -24,7 +24,7 @@ export function RaceCard({ race }: RaceCardProps) {
         role="article"
       >
         <dl className="flex flex-wrap">
-          <div className="flex-auto pt-4 pl-4">
+          <div className="flex-auto pt-3 pl-4">
             <div className="flex items-baseline gap-x-3">
               <dt className="text-xl font-semibold text-neutral-100">{race.title}</dt>
               <dd className="text-lg font-medium text-neutral-300">
@@ -36,7 +36,7 @@ export function RaceCard({ race }: RaceCardProps) {
               </dd>
             </div>
           </div>
-          <div className="mt-4 flex w-full flex-none gap-x-3 border-t border-neutral-800/80 px-4 pt-4">
+          <div className="mt-3 flex w-full flex-none gap-x-3 border-t border-neutral-800/80 px-4 pt-4">
             <dt className="flex-none">
               <span className="sr-only">Location</span>
               <MapPinIcon 
@@ -46,7 +46,7 @@ export function RaceCard({ race }: RaceCardProps) {
             </dt>
             <dd className="text-sm font-medium text-neutral-100">{race.location}</dd>
           </div>
-          <div className="mt-2.5 flex w-full flex-none gap-x-3 px-4">
+          <div className="mt-1.5 flex w-full flex-none gap-x-3 px-4">
             <dt className="flex-none">
               <span className="sr-only">Date</span>
               <CalendarDaysIcon 
@@ -66,7 +66,7 @@ export function RaceCard({ race }: RaceCardProps) {
           </div>
         </dl>
         {race.registrationUrl && (
-          <div className="mt-4 border-t border-neutral-800/80 px-4 py-4">
+          <div className="mt-3 border-t border-neutral-800/80 px-4 py-3">
             <a 
               href={race.registrationUrl}
               className="group inline-flex items-center text-sm font-semibold text-[#7DA186] hover:text-[#8FB598] focus:outline-none focus:ring-2 focus:ring-[#2C432F] rounded-sm px-1 -mx-1 transition-colors"
