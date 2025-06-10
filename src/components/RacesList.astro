@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { RaceCard } from "@/components/RaceCard";
+import MonthNav from "@/components/MonthNav.astro";
 
 async function getAllRaces() {
   const races = await getCollection('races');
@@ -10,13 +11,40 @@ async function getAllRaces() {
 }
 
 const races = await getAllRaces();
+
+// Group races by month
+const racesByMonth = races.reduce((acc, race) => {
+  const date = new Date(race.data.date);
+  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+  
+  if (!acc[monthKey]) {
+    acc[monthKey] = [];
+  }
+  acc[monthKey].push(race);
+  return acc;
+}, {} as Record<string, CollectionEntry<"races">[]>);
+
+// Format month for display
+function formatMonth(monthKey: string) {
+  const [year, month] = monthKey.split('-');
+  return new Date(`${year}-${month}-01`).toLocaleDateString('en-NZ', {
+    month: 'long',
+    year: 'numeric'
+  });
+}
 ---
 
 <div class="max-w-5xl mx-auto px-8 min-h-screen">
-  <div class="py-6 space-y-4">
-    {races.map((race) => (
-      <div class="transform transition-all duration-300 hover:translate-y-[-2px] hover:shadow-2xl">
-        <RaceCard race={race} client:load />
+  <MonthNav races={races} />
+  
+  <div class="py-6 space-y-6">
+    {Object.entries(racesByMonth).map(([monthKey, monthRaces]) => (
+      <div id={monthKey} class="scroll-mt-8 space-y-4">
+        {monthRaces.map((race) => (
+          <div class="transform transition-all duration-300 hover:translate-y-[-2px] hover:shadow-2xl">
+            <RaceCard race={race} client:load />
+          </div>
+        ))}
       </div>
     ))}
   </div>

@@ -1,0 +1,83 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  races: CollectionEntry<"races">[];
+}
+
+const { races } = Astro.props;
+
+// Get current date
+const now = new Date();
+now.setHours(0, 0, 0, 0);
+
+// Generate next 12 months
+const months = Array.from({ length: 12 }, (_, i) => {
+  const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
+  return {
+    key: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`,
+    date: date
+  };
+});
+
+// Find months with races
+const monthsWithRaces = new Set(races.map(race => {
+  const date = new Date(race.data.date);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+}));
+
+// For each month, find the next month that has races
+const monthLinks = months.map((month, i) => {
+  if (monthsWithRaces.has(month.key)) {
+    return month.key;
+  }
+  // Find the next month that has races
+  const futureMonth = months.slice(i + 1).find(m => monthsWithRaces.has(m.key));
+  return futureMonth ? futureMonth.key : month.key;
+});
+---
+
+<nav class="mb-8">
+  <div class="px-4 mb-3">
+    <div class="flex items-center gap-2 text-neutral-400">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+      </svg>
+      <span class="text-sm font-medium">Jump to month</span>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-2 px-4">
+    {months.map(({ key, date }) => {
+      const month = date.toLocaleDateString('en-NZ', { month: 'long' });
+      const year = date.getFullYear();
+      const isCurrent = date.getMonth() === now.getMonth() && 
+                       date.getFullYear() === now.getFullYear();
+      const hasRaces = monthsWithRaces.has(key);
+      
+      const Element = hasRaces ? 'a' : 'div';
+      const props = hasRaces ? { href: `#${key}` } : {};
+      
+      return (
+        <Element
+          {...props}
+          class:list={[
+            'group relative flex items-center justify-center px-4 py-2 w-[140px]',
+            'text-sm font-medium rounded-lg transition-all duration-200',
+            'backdrop-blur-sm shadow-lg ring-1 ring-inset',
+            {
+              'bg-[#4A7153] text-white hover:bg-[#5C8A66] ring-[#2C432F]/50 hover:shadow-xl': isCurrent && hasRaces,
+              'bg-[#4A7153] text-white ring-[#2C432F]/50': isCurrent && !hasRaces,
+              'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-white hover:shadow-xl ring-neutral-700/50': !isCurrent && hasRaces,
+              'bg-neutral-900/70 text-neutral-400 ring-neutral-700/50 cursor-default': !isCurrent && !hasRaces
+            }
+          ]}
+        >
+          <span class="flex flex-col items-center">
+            <span class="font-semibold">{month}</span>
+            <span class="text-xs opacity-80">{year}</span>
+          </span>
+        </Element>
+      );
+    })}
+  </div>
+</nav> 
