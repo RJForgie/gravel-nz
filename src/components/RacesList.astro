@@ -1,12 +1,22 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { RaceCard } from "@/components/RaceCard";
 import MonthNav from "@/components/MonthNav.astro";
 
+interface Race {
+  title: string;
+  date: string;
+  location: string;
+  terrain: string;
+  registrationUrl?: string;
+  raceOptions: number[];
+}
+
 async function getAllRaces() {
-  const races = await getCollection('races');
-  return races.sort((a, b) => 
-    new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+  const racesData = await getCollection('races');
+  const allRaces = racesData[0].data.races as Race[];
+  return allRaces.sort((a, b) => 
+    new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 }
 
@@ -14,7 +24,7 @@ const races = await getAllRaces();
 
 // Group races by month
 const racesByMonth = races.reduce((acc, race) => {
-  const date = new Date(race.data.date);
+  const date = new Date(race.date);
   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
   
   if (!acc[monthKey]) {
@@ -22,7 +32,7 @@ const racesByMonth = races.reduce((acc, race) => {
   }
   acc[monthKey].push(race);
   return acc;
-}, {} as Record<string, CollectionEntry<"races">[]>);
+}, {} as Record<string, Race[]>);
 
 // Format month for display
 function formatMonth(monthKey: string) {

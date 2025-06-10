@@ -1,0 +1,60 @@
+{
+  "races": [
+    {
+      "title": "Canterbury Classic",
+      "date": "2026-04-18",
+      "location": "Christchurch, New Zealand",
+      "terrain": "gravel",
+      "registrationUrl": "https://canterburyclassic.example.com",
+      "raceOptions": [160, 80]
+    },
+    {
+      "title": "Hawke's Bay Hustle",
+      "date": "2026-06-06",
+      "location": "Napier, New Zealand",
+      "terrain": "mixed",
+      "registrationUrl": "https://hawkesbayhustle.example.com",
+      "raceOptions": [130, 75, 40]
+    },
+    {
+      "title": "Marlborough Meander",
+      "date": "2026-02-14",
+      "location": "Blenheim, New Zealand",
+      "terrain": "mixed",
+      "registrationUrl": "https://marlboroughmeander.example.com",
+      "raceOptions": [110, 60]
+    },
+    {
+      "title": "Otago Adventure",
+      "date": "2025-08-17",
+      "location": "Dunedin, New Zealand",
+      "terrain": "mixed",
+      "registrationUrl": "https://otagoadventure.example.com",
+      "raceOptions": [85]
+    },
+    {
+      "title": "Southern Epic",
+      "date": "2025-07-20",
+      "location": "Queenstown, New Zealand",
+      "terrain": "gravel",
+      "registrationUrl": "https://southernepic.example.com",
+      "raceOptions": [120]
+    },
+    {
+      "title": "Taupo Traverse",
+      "date": "2025-12-07",
+      "location": "Taupo, New Zealand",
+      "terrain": "gravel",
+      "registrationUrl": "https://taupotraverse.example.com",
+      "raceOptions": [140, 70, 35]
+    },
+    {
+      "title": "Wellington Wilderness",
+      "date": "2025-10-12",
+      "location": "Wellington, New Zealand",
+      "terrain": "mixed",
+      "registrationUrl": "https://wellingtonwilderness.example.com",
+      "raceOptions": [95]
+    }
+  ]
+} 
