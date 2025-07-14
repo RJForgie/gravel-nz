@@ -12,6 +12,10 @@ interface Race {
   raceOptions: number[];
 }
 
+interface RaceWithMarker extends Race {
+  monthKey: string | null;
+}
+
 async function getAllRaces() {
   const racesData = await getCollection('races');
   const allRaces = racesData[0].data.races as Race[];
@@ -20,37 +24,46 @@ async function getAllRaces() {
 
 const races = await getAllRaces();
 
-const racesByMonth = races.reduce((acc, race) => {
+const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
   const date = new Date(race.date);
   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
   
-  if (!acc[monthKey]) {
-    acc[monthKey] = [];
-  }
-  acc[monthKey].push(race);
-  return acc;
-}, {} as Record<string, Race[]>);
+  // Check if this is the first race of a new month
+  const isFirstOfMonth = index === 0 || 
+    races[index - 1] && new Date(races[index - 1].date).getMonth() !== date.getMonth() ||
+    races[index - 1] && new Date(races[index - 1].date).getFullYear() !== date.getFullYear();
+  
+  return {
+    ...race,
+    monthKey: isFirstOfMonth ? monthKey : null
+  };
+});
 ---
 
 <div class="max-w-5xl mx-auto">
   <div class="max-w-3xl mx-auto px-8">
     <MonthNav races={races} />
     
-    <div class="py-6 space-y-6">
-      {Object.entries(racesByMonth).map(([monthKey, monthRaces]) => (
-        <div id={monthKey} class="scroll-mt-8 space-y-4">
-          {monthRaces.map((race) => (
-            <div class="transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-              <RaceCard race={race} />
-            </div>
-          ))}
+    <div class="py-8 space-y-6">
+      {racesWithMonthMarkers.map((raceWithMarker) => (
+        <div 
+          id={raceWithMarker.monthKey || undefined}
+          class={`transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${raceWithMarker.monthKey ? 'scroll-mt-8' : ''}`}
+        >
+          <RaceCard race={raceWithMarker} />
         </div>
       ))}
     </div>
 
     {races.length === 0 && (
-      <div class="text-center py-12">
-        <p class="text-lg text-neutral-300">No upcoming races at the moment. Check back soon!</p>
+      <div class="text-center py-16">
+        <div class="bg-neutral-900/60 backdrop-blur-sm rounded-md p-8 border border-neutral-700/50 max-w-md mx-auto">
+          <svg class="h-12 w-12 text-neutral-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 8l-2-2m0 0l-2-2m2 2l2-2m-2 2l2 2"/>
+          </svg>
+          <p class="text-lg text-neutral-300 font-medium mb-2">No upcoming races at the moment</p>
+          <p class="text-sm text-neutral-400">Check back soon for new adventures!</p>
+        </div>
       </div>
     )}
   </div>

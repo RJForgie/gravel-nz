@@ -3,10 +3,37 @@
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-outfit: 'Outfit', system-ui, sans-serif;
+  --letter-spacing-tighter: -0.025em;
+  --letter-spacing-tight: -0.0125em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
 }
 
 @layer base {
   body {
     font-family: theme(--font-sans);
+    line-height: 1.6;
+    letter-spacing: theme(--letter-spacing-normal);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: theme(--font-outfit);
+    line-height: 1.2;
+    letter-spacing: theme(--letter-spacing-tight);
+  }
+  
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  *:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
 }
