@@ -14,11 +14,9 @@ interface Props {
 
 const { races } = Astro.props;
 
-// Get current date
 const now = new Date();
 now.setHours(0, 0, 0, 0);
 
-// Generate next 12 months
 const months = Array.from({ length: 12 }, (_, i) => {
   const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
   return {
@@ -27,55 +25,51 @@ const months = Array.from({ length: 12 }, (_, i) => {
   };
 });
 
-// Find months with races
-const monthsWithRaces = new Set(races.map(race => {
+const monthsWithRaces = new Map();
+races.forEach(race => {
   const date = new Date(race.date);
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-}));
+  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+  monthsWithRaces.set(monthKey, (monthsWithRaces.get(monthKey) || 0) + 1);
+});
 ---
 
 <nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-4">
-  <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
+  <div class="grid grid-cols-2 sm:grid-cols-6 gap-1.5 sm:gap-2">
     {months.map(({ key, date }) => {
       const month = date.toLocaleDateString('en-NZ', { month: 'long' });
       const year = date.getFullYear();
-      const isCurrent = date.getMonth() === now.getMonth() && 
-                       date.getFullYear() === now.getFullYear();
-      const hasRaces = monthsWithRaces.has(key);
+      const isCurrent = date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+      const raceCount = monthsWithRaces.get(key) || 0;
+      const hasRaces = raceCount > 0;
       
-      const baseClasses = [
-        'group relative flex items-center justify-center px-2 sm:px-4 py-1.5 sm:py-2',
-        'text-sm font-medium rounded-sm transition-all duration-200',
-        'backdrop-blur-sm shadow-lg ring-1 ring-inset focus:outline-none focus:ring-2'
-      ];
-
-      const currentWithRacesClasses = 'bg-[#4A7153] text-neutral-200 hover:bg-[#5C8A66] ring-[#2C432F]/50 hover:shadow-xl focus:ring-[#2C432F]';
-      const currentNoRacesClasses = 'bg-[#4A7153] text-neutral-200 ring-[#2C432F]/50';
-      const nonCurrentWithRacesClasses = 'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl ring-neutral-700/50 focus:ring-neutral-500';
-      const nonCurrentNoRacesClasses = 'bg-neutral-900/70 text-neutral-400 ring-neutral-700/50 cursor-not-allowed';
-
-      const classes = [
-        ...baseClasses,
-        isCurrent 
-          ? (hasRaces ? currentWithRacesClasses : currentNoRacesClasses)
-          : (hasRaces ? nonCurrentWithRacesClasses : nonCurrentNoRacesClasses)
-      ].join(' ');
-
       return hasRaces ? (
         <a
           href={`#${key}`}
-          class={classes}
-          aria-label={`View races for ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
+                      class={`font-['Outfit'] group relative flex flex-col items-center justify-center px-2 sm:px-4 py-2 sm:py-3 text-sm font-medium rounded-lg transition-all duration-200 backdrop-blur-sm shadow-lg ring-1 ring-inset focus:outline-none focus:ring-2 ${
+            isCurrent 
+              ? 'bg-[#6B7B6B] text-neutral-200 hover:bg-[#7B8B7B] ring-[#4A5A4A]/50 hover:shadow-xl focus:ring-[#4A5A4A] hover:scale-105'
+              : 'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl ring-neutral-700/50 focus:ring-neutral-500 hover:scale-105'
+          }`}
+          aria-label={`View ${raceCount} race${raceCount !== 1 ? 's' : ''} for ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
         >
           <span class="flex flex-col items-center">
             <span class="font-semibold text-xs sm:text-sm">{month}</span>
             <span class="text-[10px] sm:text-xs opacity-80">{year}</span>
           </span>
+          <div class="absolute -top-1 -right-1">
+            <div class="bg-[#8B9B8B] text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+              {raceCount}
+            </div>
+          </div>
         </a>
       ) : (
         <div
-          class={classes}
-          aria-label={`No races in ${month} ${year}`}
+          class={`font-['Outfit'] relative flex flex-col items-center justify-center px-2 sm:px-4 py-2 sm:py-3 text-sm font-medium rounded-lg transition-all duration-200 backdrop-blur-sm shadow-lg ring-1 ring-inset ${
+            isCurrent 
+              ? 'bg-[#6B7B6B]/60 text-neutral-300 ring-[#4A5A4A]/30'
+              : 'bg-neutral-900/40 text-neutral-500 ring-neutral-700/30 cursor-not-allowed'
+          }`}
+          aria-label={`No races in ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
         >
           <span class="flex flex-col items-center">
             <span class="font-semibold text-xs sm:text-sm">{month}</span>

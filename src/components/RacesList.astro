@@ -15,14 +15,11 @@ interface Race {
 async function getAllRaces() {
   const racesData = await getCollection('races');
   const allRaces = racesData[0].data.races as Race[];
-  return allRaces.sort((a, b) => 
-    new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
+  return allRaces.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 
 const races = await getAllRaces();
 
-// Group races by month
 const racesByMonth = races.reduce((acc, race) => {
   const date = new Date(race.date);
   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
@@ -33,26 +30,17 @@ const racesByMonth = races.reduce((acc, race) => {
   acc[monthKey].push(race);
   return acc;
 }, {} as Record<string, Race[]>);
-
-// Format month for display
-function formatMonth(monthKey: string) {
-  const [year, month] = monthKey.split('-');
-  return new Date(`${year}-${month}-01`).toLocaleDateString('en-NZ', {
-    month: 'long',
-    year: 'numeric'
-  });
-}
 ---
 
 <div class="max-w-5xl mx-auto">
   <div class="max-w-3xl mx-auto px-8">
     <MonthNav races={races} />
     
-    <div class="py-6 space-y-4">
+    <div class="py-6 space-y-6">
       {Object.entries(racesByMonth).map(([monthKey, monthRaces]) => (
         <div id={monthKey} class="scroll-mt-8 space-y-4">
           {monthRaces.map((race) => (
-            <div class="transition hover:-translate-y-0.5 hover:shadow-2xl">
+            <div class="transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <RaceCard race={race} client:load />
             </div>
           ))}
