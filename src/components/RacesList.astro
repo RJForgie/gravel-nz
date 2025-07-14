@@ -14,6 +14,7 @@ interface Race {
 
 interface RaceWithMarker extends Race {
   monthKey: string | null;
+  monthLabel: string | null;
 }
 
 async function getAllRaces() {
@@ -33,9 +34,14 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
     races[index - 1] && new Date(races[index - 1].date).getMonth() !== date.getMonth() ||
     races[index - 1] && new Date(races[index - 1].date).getFullYear() !== date.getFullYear();
   
+  const monthLabel = isFirstOfMonth ? 
+    date.toLocaleDateString('en-NZ', { month: 'long', year: 'numeric' }) : 
+    null;
+  
   return {
     ...race,
-    monthKey: isFirstOfMonth ? monthKey : null
+    monthKey: isFirstOfMonth ? monthKey : null,
+    monthLabel
   };
 });
 ---
@@ -45,12 +51,27 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
     <MonthNav races={races} />
     
     <div class="py-8 space-y-6">
-      {racesWithMonthMarkers.map((raceWithMarker) => (
-        <div 
-          id={raceWithMarker.monthKey || undefined}
-          class={`transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${raceWithMarker.monthKey ? 'scroll-mt-8' : ''}`}
-        >
-          <RaceCard race={raceWithMarker} />
+      {racesWithMonthMarkers.map((raceWithMarker, index) => (
+        <div>
+          {raceWithMarker.monthLabel && (
+            <div class={`${index > 0 ? 'mt-10 mb-6' : 'mb-6'} flex items-center gap-3`}>
+              <div class="flex items-center gap-2.5 bg-neutral-900/60 backdrop-blur-sm rounded-md px-3 py-2 border border-neutral-700/30 shadow-md">
+                <svg class="h-4 w-4 text-neutral-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"></path>
+                </svg>
+                <h2 
+                  id={raceWithMarker.monthKey || undefined}
+                  class="font-['Outfit'] text-base font-semibold text-neutral-200 tracking-wide scroll-mt-8"
+                >
+                  {raceWithMarker.monthLabel}
+                </h2>
+              </div>
+              <div class="flex-1 h-px bg-gradient-to-r from-neutral-700/50 via-neutral-600/30 to-transparent"></div>
+            </div>
+          )}
+          <div class="transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+            <RaceCard race={raceWithMarker} />
+          </div>
         </div>
       ))}
     </div>
