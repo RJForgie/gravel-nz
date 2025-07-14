@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { RaceCard } from "@/components/RaceCard";
+import RaceCard from "@/components/RaceCard.astro";
 import MonthNav from "@/components/MonthNav.astro";
 
 interface Race {
@@ -41,7 +41,7 @@ const racesByMonth = races.reduce((acc, race) => {
         <div id={monthKey} class="scroll-mt-8 space-y-4">
           {monthRaces.map((race) => (
             <div class="transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-              <RaceCard race={race} client:load />
+              <RaceCard race={race} />
             </div>
           ))}
         </div>

@@ -2,7 +2,7 @@
 import RacesList from '../components/RacesList.astro';
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import gravelImage from '../assets/gravel.jpg';
+import gravelImage from '../assets/gravel-optimized.webp';
 import HeroContent from '../components/HeroContent.astro';
 
 
@@ -11,7 +11,7 @@ import HeroContent from '../components/HeroContent.astro';
 
 <Layout title="Gravel NZ - New Zealand's Gravel Races" description="Find upcoming gravel races in Aotearoa">
 	<div class="relative min-h-screen">
-		{/* Full-width background image */}
+		{/* Full-width background image - restored original effects */}
 		<div class="fixed inset-0 -z-10">
 			<Image
 				src={gravelImage}
