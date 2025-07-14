@@ -48,7 +48,7 @@ function formatMonth(monthKey: string) {
   <div class="max-w-3xl mx-auto px-8">
     <MonthNav races={races} />
     
-    <div class="py-6 space-y-6">
+    <div class="py-6 space-y-4">
       {Object.entries(racesByMonth).map(([monthKey, monthRaces]) => (
         <div id={monthKey} class="scroll-mt-8 space-y-4">
           {monthRaces.map((race) => (

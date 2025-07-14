@@ -35,7 +35,7 @@ const monthsWithRaces = new Set(races.map(race => {
 ---
 
 <nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-4">
-  <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-2 gap-1.5 sm:gap-2">
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
     {months.map(({ key, date }) => {
       const month = date.toLocaleDateString('en-NZ', { month: 'long' });
       const year = date.getFullYear();
