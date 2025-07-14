@@ -1,60 +1,76 @@
 {
   "races": [
     {
-      "title": "Canterbury Classic",
-      "date": "2026-04-18",
-      "location": "Christchurch, New Zealand",
-      "terrain": "gravel",
-      "registrationUrl": "https://canterburyclassic.example.com",
-      "raceOptions": [160, 80]
-    },
-    {
-      "title": "Hawke's Bay Hustle",
-      "date": "2026-06-06",
-      "location": "Napier, New Zealand",
-      "terrain": "mixed",
-      "registrationUrl": "https://hawkesbayhustle.example.com",
-      "raceOptions": [130, 75, 40]
-    },
-    {
-      "title": "Marlborough Meander",
+      "title": "The Graveller",
       "date": "2026-02-14",
-      "location": "Blenheim, New Zealand",
-      "terrain": "mixed",
-      "registrationUrl": "https://marlboroughmeander.example.com",
-      "raceOptions": [110, 60]
-    },
-    {
-      "title": "Otago Adventure",
-      "date": "2025-08-17",
-      "location": "Dunedin, New Zealand",
-      "terrain": "mixed",
-      "registrationUrl": "https://otagoadventure.example.com",
-      "raceOptions": [85]
-    },
-    {
-      "title": "Southern Epic",
-      "date": "2025-07-20",
-      "location": "Queenstown, New Zealand",
+      "location": "Hanmer Springs, Canterbury",
       "terrain": "gravel",
-      "registrationUrl": "https://southernepic.example.com",
-      "raceOptions": [120]
+      "registrationUrl": "https://cjmsevents.co.nz/our-events/the-graveler",
+      "raceOptions": [132]
     },
     {
-      "title": "Taupo Traverse",
-      "date": "2025-12-07",
-      "location": "Taupo, New Zealand",
+      "title": "Edition Zero Gravel",
+      "date": "2025-11-29",
+      "location": "Waimate, Canterbury",
       "terrain": "gravel",
-      "registrationUrl": "https://taupotraverse.example.com",
-      "raceOptions": [140, 70, 35]
+      "registrationUrl": "https://www.greatkiwigravel.com/editionzerogravel",
+      "raceOptions": [248, 137, 84, 51]
     },
     {
-      "title": "Wellington Wilderness",
-      "date": "2025-10-12",
-      "location": "Wellington, New Zealand",
-      "terrain": "mixed",
-      "registrationUrl": "https://wellingtonwilderness.example.com",
-      "raceOptions": [95]
+      "title": "East Coast Gravel",
+      "date": "2026-03-14",
+      "location": "Cheviot, Canterbury",
+      "terrain": "gravel",
+      "registrationUrl": "https://www.muddygumbootevents.com/ecg",
+      "raceOptions": [118]
+    },
+    {
+      "title": "Glenorchy Grind",
+      "date": "2025-10-11",
+      "location": "Glenorchy, Southern Alps",
+      "terrain": "gravel",
+      "registrationUrl": "https://glenorchytrailstrust.org.nz/glenorchy-gravel-grind/",
+      "raceOptions": [160, 86, 57]
+    },
+    {
+      "title": "Gravel Grind",
+      "date": "2025-11-29",
+      "location": "Taupō, Waikato",
+      "terrain": "gravel",
+      "registrationUrl": "https://www.cyclechallenge.com/gravel-grind",
+      "raceOptions": [83]
+    },
+    {
+      "title": "Ride the Wilderness",
+      "date": "2025-11-15",
+      "location": "Ross, West Coast",
+      "terrain": "gravel",
+      "registrationUrl": "https://cjmsevents.co.nz/our-events/ride-the-wilderness/",
+      "raceOptions": [126, 95, 59, 21]
+    },
+    {
+      "title": "Tour Aotearoa",
+      "date": "2026-02-19",
+      "location": "Cape Reinga, Northland",
+      "terrain": "bikepacking",
+      "registrationUrl": "http://www.touraotearoa.nz/",
+      "raceOptions": [3000]
+    },
+    {
+      "title": "Le Petit Brevet",
+      "date": "2025-11-8",
+      "location": "Banks Peninsula, Canterbury",
+      "terrain": "bikepacking",
+      "registrationUrl": "https://www.greatkiwigravel.com/le-petit-brevet",
+      "raceOptions": [300, 200]
+    },
+    {
+      "title": "Tuatara 1000",
+      "date": "2026-02-28",
+      "location": "Banks Peninsula, Canterbury",
+      "terrain": "bikepacking",
+      "registrationUrl": "https://www.greatkiwigravel.com/tuatara-1000",
+      "raceOptions": [1070, 500, 300]
     }
   ]
 } 
