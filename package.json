@@ -20,6 +20,12 @@
   "pnpm": {
     "ignoredBuiltDependencies": [
       "sharp"
+    ],
+    "onlyBuiltDependencies": [
+      "workerd"
     ]
+  },
+  "devDependencies": {
+    "wrangler": "^4.24.3"
   }
 }
