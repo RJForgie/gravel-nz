@@ -45,10 +45,18 @@ races.forEach(race => {
       return hasRaces ? (
         <a
           href={`#${key}`}
-          class={`font-['Outfit'] group relative flex flex-col items-center justify-center px-3 sm:px-4 py-3 sm:py-4 text-sm font-semibold rounded-sm transition-all duration-200 backdrop-blur-sm shadow-lg ring-1 ring-inset focus:outline-none focus:ring-2 ${
+          class={`font-['Outfit'] group relative
+                  flex flex-col items-center justify-center
+                  px-3 sm:px-4 py-3 sm:py-4
+                  text-sm font-semibold
+                  rounded-sm backdrop-blur-sm
+                  shadow-lg ring-1 ring-inset
+                  transition-all duration-200
+                  focus:outline-none focus:ring-2
+                  pointer-coarse:px-4 pointer-coarse:py-4 ${
             isCurrent 
-              ? 'bg-[#6B7B6B] text-neutral-200 hover:bg-[#7B8B7B] ring-[#4A5A4A]/50 hover:shadow-xl focus:ring-[#4A5A4A] hover:scale-105'
-              : 'bg-neutral-900/70 text-neutral-300 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl ring-neutral-700/50 focus:ring-neutral-500 hover:scale-105'
+              ? 'bg-[#6B7B6B] text-neutral-200 ring-[#4A5A4A]/50 hover:bg-[#7B8B7B] hover:shadow-xl hover:scale-105 focus:ring-[#4A5A4A]'
+              : 'bg-neutral-900/70 text-neutral-300 ring-neutral-700/50 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl hover:scale-105 focus:ring-neutral-500'
           }`}
           aria-label={`View ${raceCount} race${raceCount !== 1 ? 's' : ''} for ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
         >
@@ -64,7 +72,13 @@ races.forEach(race => {
         </a>
       ) : (
         <div
-          class={`font-['Outfit'] relative flex flex-col items-center justify-center px-3 sm:px-4 py-3 sm:py-4 text-sm font-semibold rounded-sm transition-all duration-200 backdrop-blur-sm shadow-lg ring-1 ring-inset ${
+          class={`font-['Outfit'] relative
+                  flex flex-col items-center justify-center
+                  px-3 sm:px-4 py-3 sm:py-4
+                  text-sm font-semibold
+                  rounded-sm backdrop-blur-sm
+                  shadow-lg ring-1 ring-inset
+                  transition-all duration-200 ${
             isCurrent 
               ? 'bg-[#6B7B6B]/60 text-neutral-300 ring-[#4A5A4A]/30'
               : 'bg-neutral-900/40 text-neutral-500 ring-neutral-700/30 cursor-not-allowed'

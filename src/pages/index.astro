@@ -19,22 +19,34 @@ import HeroContent from '../components/HeroContent.astro';
 				class="h-full w-full object-cover"
 			/>
 			{/* Base gradient overlay */}
-			<div class="absolute inset-0 bg-gradient-to-br from-neutral-950/80 to-neutral-900/75 mix-blend-multiply"></div>
+			<div class="absolute inset-0 
+			             bg-gradient-to-br from-neutral-950/80 to-neutral-900/75 
+			             mix-blend-multiply">
+			</div>
 			
 			{/* Additional right side gradient for more opacity */}
-			<div class="absolute inset-0 bg-gradient-to-r from-transparent via-neutral-950/40 to-neutral-950/90"></div>
+			<div class="absolute inset-0 
+			             bg-gradient-to-r from-transparent via-neutral-950/40 to-neutral-950/90">
+			</div>
 			
 			{/* Right side blur overlay */}
-			<div class="absolute right-0 top-0 bottom-0 w-1/2 backdrop-blur-[2px] md:backdrop-blur-[3px]"></div>
+			<div class="absolute right-0 top-0 bottom-0 w-1/2 
+			             backdrop-blur-[2px] md:backdrop-blur-[3px]">
+			</div>
 
 			{/* Additional vignette for left panel content */}
-			<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/25 to-transparent"></div>
+			<div class="absolute inset-0 
+			             bg-gradient-to-t from-neutral-950/80 via-neutral-950/25 to-transparent">
+			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row relative">
 			{/* Left panel content - hidden on mobile/tablet */}
-			<div class="hidden md:block md:fixed md:w-1/2 md:h-screen">
-				<div class="relative h-full flex flex-col items-center justify-center px-6 py-24 sm:px-24 xl:py-32">
+			<div class="hidden md:block 
+			             md:fixed md:w-1/2 md:h-screen">
+				<div class="relative h-full 
+				             flex flex-col items-center justify-center
+				             px-6 py-24 sm:px-24 xl:py-32">
 					<HeroContent />
 				</div>
 			</div>
