@@ -79,7 +79,7 @@ const terrainColors = getTerrainColors(race.terrain);
 <div class="group w-full max-w-3xl">
   <h2 class="sr-only">Race Summary for {race.title}</h2>
   <div 
-    class="relative rounded-md shadow-xl ring-1 ring-neutral-700/50 backdrop-blur-sm bg-neutral-900/95 overflow-hidden transition-all duration-300 hover:ring-neutral-600/70 hover:shadow-2xl hover:bg-neutral-800/95"
+    class="relative rounded-sm shadow-xl ring-1 ring-neutral-700/50 backdrop-blur-sm bg-neutral-900/95 overflow-hidden transition-all duration-300 hover:ring-neutral-600/70 hover:shadow-2xl hover:bg-neutral-800/95"
   >
     <div class={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${terrainColors.gradient}`}></div>
     
@@ -146,7 +146,7 @@ const terrainColors = getTerrainColors(race.terrain);
         {race.registrationUrl && (
           <a 
             href={race.registrationUrl}
-            class={`inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 ${terrainColors.button.focus} ${terrainColors.button.text} hover:text-white ${terrainColors.button.bg} ${terrainColors.button.hoverBg} border ${terrainColors.button.border} ${terrainColors.button.hoverBorder} shadow-lg hover:shadow-xl hover:-translate-y-0.5`}
+            class={`inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 ${terrainColors.button.focus} ${terrainColors.button.text} hover:text-white ${terrainColors.button.bg} ${terrainColors.button.hoverBg} border ${terrainColors.button.border} ${terrainColors.button.hoverBorder} shadow-lg hover:shadow-xl hover:-translate-y-0.5`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Register for ${race.title} (opens in new tab)`}
