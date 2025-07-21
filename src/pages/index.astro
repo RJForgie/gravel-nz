@@ -40,10 +40,10 @@ import HeroContent from '../components/HeroContent.astro';
 			</div>
 		</div>
 
-		<div class="flex flex-col md:flex-row relative">
+		<div class="flex flex-col lg:flex-row relative">
 			{/* Left panel content - hidden on mobile/tablet */}
-			<div class="hidden md:block 
-			             md:fixed md:w-1/2 md:h-screen">
+			<div class="hidden lg:block 
+			             lg:fixed lg:w-1/2 lg:h-screen">
 				<div class="relative h-full 
 				             flex flex-col items-center justify-center
 				             px-6 py-24 sm:px-24 xl:py-32">
@@ -52,9 +52,9 @@ import HeroContent from '../components/HeroContent.astro';
 			</div>
 			
 			{/* Right panel content */}
-			<div class="w-full md:w-1/2 md:ml-[50%]">
+			<div class="w-full lg:w-1/2 lg:ml-[50%]">
 				{/* Hero content shown above month nav on mobile/tablet */}
-				<div class="block md:hidden px-6 py-12">
+				<div class="block lg:hidden px-6 py-12">
 					<HeroContent />
 				</div>
 				<RacesList />
