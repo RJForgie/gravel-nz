@@ -9,7 +9,8 @@ const races = defineCollection({
       location: z.string(),
       terrain: z.string(),
       registrationUrl: z.string().optional(),
-      raceOptions: z.array(z.number())
+      raceOptions: z.array(z.number()),
+      tentative: z.boolean()
     }))
   })
 });

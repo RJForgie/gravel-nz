@@ -6,7 +6,8 @@
       "location": "Hanmer Springs, Canterbury",
       "terrain": "gravel",
       "registrationUrl": "https://cjmsevents.co.nz/our-events/the-graveler",
-      "raceOptions": [132]
+      "raceOptions": [132],
+      "tentative": false
     },
     {
       "title": "Edition Zero Gravel",
@@ -14,7 +15,8 @@
       "location": "Waimate, Canterbury",
       "terrain": "gravel",
       "registrationUrl": "https://www.greatkiwigravel.com/editionzerogravel",
-      "raceOptions": [248, 137, 84, 51]
+      "raceOptions": [248, 137, 84, 51],
+      "tentative": false
     },
     {
       "title": "East Coast Gravel",
@@ -22,7 +24,8 @@
       "location": "Cheviot, Canterbury",
       "terrain": "gravel",
       "registrationUrl": "https://www.muddygumbootevents.com/ecg",
-      "raceOptions": [118]
+      "raceOptions": [118],
+      "tentative": false
     },
     {
       "title": "Glenorchy Grind",
@@ -30,7 +33,8 @@
       "location": "Glenorchy, Southern Alps",
       "terrain": "gravel",
       "registrationUrl": "https://glenorchytrailstrust.org.nz/glenorchy-gravel-grind/",
-      "raceOptions": [160, 86, 57]
+      "raceOptions": [160, 86, 57],
+      "tentative": false
     },
     {
       "title": "Gravel Grind",
@@ -38,7 +42,8 @@
       "location": "Taupō, Waikato",
       "terrain": "gravel",
       "registrationUrl": "https://www.cyclechallenge.com/gravel-grind",
-      "raceOptions": [83]
+      "raceOptions": [83],
+      "tentative": false
     },
     {
       "title": "Ride the Wilderness",
@@ -46,7 +51,8 @@
       "location": "Ross, West Coast",
       "terrain": "gravel",
       "registrationUrl": "https://cjmsevents.co.nz/our-events/ride-the-wilderness/",
-      "raceOptions": [126, 95, 59, 21]
+      "raceOptions": [126, 95, 59, 21],
+      "tentative": false
     },
     {
       "title": "Tour Aotearoa",
@@ -54,7 +60,8 @@
       "location": "Cape Reinga, Northland",
       "terrain": "bikepacking",
       "registrationUrl": "http://www.touraotearoa.nz/",
-      "raceOptions": [3000]
+      "raceOptions": [3000],
+      "tentative": true
     },
     {
       "title": "Le Petit Brevet",
@@ -62,7 +69,8 @@
       "location": "Banks Peninsula, Canterbury",
       "terrain": "bikepacking",
       "registrationUrl": "https://www.greatkiwigravel.com/le-petit-brevet",
-      "raceOptions": [300, 200]
+      "raceOptions": [300, 200],
+      "tentative": false
     },
     {
       "title": "Tuatara 1000",
@@ -70,7 +78,8 @@
       "location": "Banks Peninsula, Canterbury",
       "terrain": "bikepacking",
       "registrationUrl": "https://www.greatkiwigravel.com/tuatara-1000",
-      "raceOptions": [1070, 500, 300]
+      "raceOptions": [1070, 500, 300],
+      "tentative": true
     }
   ]
 } 
