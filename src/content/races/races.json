@@ -32,7 +32,7 @@
       "date": "2025-10-11",
       "location": "Glenorchy, Southern Alps",
       "terrain": "gravel",
-      "registrationUrl": "https://glenorchytrailstrust.org.nz/glenorchy-gravel-grind/",
+      "registrationUrl": "https://www.glenorchygrind.co.nz/",
       "raceOptions": [160, 86, 57],
       "tentative": false
     },
@@ -61,7 +61,7 @@
       "terrain": "bikepacking",
       "registrationUrl": "http://www.touraotearoa.nz/",
       "raceOptions": [3000],
-      "tentative": true
+      "tentative": false
     },
     {
       "title": "Le Petit Brevet",
@@ -79,7 +79,61 @@
       "terrain": "bikepacking",
       "registrationUrl": "https://www.greatkiwigravel.com/tuatara-1000",
       "raceOptions": [1070, 500, 300],
-      "tentative": true
+      "tentative": false
+    },
+    {
+      "title": "The Karioi Classic",
+      "date": "2025-07-27",
+      "location": "Raglan, Waikato",
+      "terrain": "gravel",
+      "registrationUrl": "https://goraglan.com/raglan-events/karioi-classic-2025/",
+      "raceOptions": [85, 58],
+      "tentative": false
+    },
+    {
+      "title": "Wairarapa Gravel Series - Round #1",
+      "date": "2025-08-03",
+      "location": "Mauriceville, Wairarapa",
+      "terrain": "gravel",
+      "registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-1",
+      "raceOptions": [92, 46],
+      "tentative": false
+    },
+    {
+      "title": "Wairarapa Gravel Series - Round #2",
+      "date": "2025-08-17",
+      "location": "Wainuioru, Wairarapa",
+      "terrain": "gravel",
+      "registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-2",
+      "raceOptions": [74, 57, 40],
+      "tentative": false
+    },
+    {
+      "title": "Wairarapa Gravel Series - Round #3",
+      "date": "2025-08-31",
+      "location": "Mauriceville, Wairarapa",
+      "terrain": "gravel",
+      "registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-3",
+      "raceOptions": [92, 46],
+      "tentative": false
+    },
+    {
+      "title": "Tour Te Waipounamu",
+      "date": "2026-01-25",
+      "location": "Cape Farewell, Tasman",
+      "terrain": "bikepacking",
+      "registrationUrl": "https://www.tourtewaipounamu.co.nz/",
+      "raceOptions": [1331],
+      "tentative": false
+    },
+    {
+      "title": "The Mackenzie",
+      "date": "2026-04-11",
+      "location": "Lake Tekapo, Canterbury",
+      "terrain": "gravel",
+      "registrationUrl": "https://themackenzierace.com/",
+      "raceOptions": [170, 92, 77, 34],
+      "tentative": false
     }
   ]
 } 
