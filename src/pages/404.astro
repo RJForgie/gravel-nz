@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import gravelImage from '../assets/gravel-optimized.webp';
+---
+
+<Layout 
+  title="Page Not Found - Gravel NZ" 
+  description="The page you're looking for doesn't exist. Find upcoming gravel races in Aotearoa instead."
+>
+  <div class="relative min-h-screen flex items-center justify-center">
+    <div class="fixed inset-0 -z-10">
+      <Image
+        src={gravelImage}
+        alt="Gravel road through New Zealand landscape"
+        class="h-full w-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 
+                   bg-gradient-to-br from-neutral-950/90 to-neutral-900/85 
+                   mix-blend-multiply">
+      </div>
+      
+      <div class="absolute inset-0 
+                   bg-gradient-to-t from-neutral-950/80 via-neutral-950/40 to-transparent">
+      </div>
+    </div>
+
+    <div class="relative max-w-2xl mx-auto px-6 py-12 text-center">
+      <div class="space-y-8">
+        <!-- 404 Number -->
+        <div class="space-y-4">
+          <h1 class="font-['Outfit'] text-8xl sm:text-9xl font-bold
+                     text-amber-100/90 
+                     drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] 
+                     tracking-tight">
+            404
+          </h1>
+          <div class="w-24 h-1 bg-gradient-to-r from-[#C49B7A] via-[#A67C52] to-[#8B5A2B] mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="space-y-4">
+          <h2 class="font-['Outfit'] text-2xl sm:text-3xl font-semibold
+                     text-neutral-200 
+                     drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+            Page not found
+          </h2>
+          <p class="text-lg text-neutral-300 
+                    drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] 
+                    max-w-lg mx-auto">
+            This page doesn't exist. Let's get you back on track.
+          </p>
+        </div>
+
+        <!-- Action Button -->
+        <div class="flex justify-center pt-4">
+          <a 
+            href="/"
+            class="inline-flex items-center gap-2
+                   px-6 py-3 rounded-sm
+                   bg-[#C49B7A] hover:bg-[#A67C52] 
+                   text-neutral-900 font-semibold text-lg
+                   transition-all duration-200
+                   shadow-lg hover:shadow-xl hover:-translate-y-0.5
+                   focus:outline-none focus:ring-2 focus:ring-[#C49B7A]/50 focus:ring-offset-2 focus:ring-offset-neutral-900"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Back to Home
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</Layout> 

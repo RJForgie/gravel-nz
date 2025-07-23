@@ -56,22 +56,6 @@ const canonicalURL = new URL(
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL('/og-image.jpg', canonicalURL)} />
 		
-		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "Organization",
-				"name": "Gravel NZ",
-				"url": canonicalURL,
-				"logo": new URL('/logo.png', canonicalURL),
-				"description": "New Zealand's premier platform for gravel cycling events and races across Aotearoa.",
-				"sameAs": [
-					"https://facebook.com/gravelnz",
-					"https://instagram.com/gravelnz",
-					"https://twitter.com/gravelnz"
-				]
-			}
-		</script>
-		
 		<title>{title}</title>
 	</head>
 	<body>
