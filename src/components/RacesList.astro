@@ -130,20 +130,45 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            backButton.style.opacity = '0';
-            backButton.style.transform = 'translateY(8px)';
-            backButton.style.pointerEvents = 'none';
-          } else {
+          const calendarRect = calendar.getBoundingClientRect();
+          const hasScrolledPastCalendar = calendarRect.bottom < 0;
+          
+          if (hasScrolledPastCalendar) {
+            // User has scrolled past the calendar, show button
             backButton.style.opacity = '1';
             backButton.style.transform = 'translateY(0)';
             backButton.style.pointerEvents = 'auto';
+          } else {
+            // User hasn't scrolled past calendar or is above it, hide button
+            backButton.style.opacity = '0';
+            backButton.style.transform = 'translateY(8px)';
+            backButton.style.pointerEvents = 'none';
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0 }
     );
     
+    // Also listen to scroll events for more responsive behavior
+    const handleScroll = () => {
+      const calendarRect = calendar.getBoundingClientRect();
+      const hasScrolledPastCalendar = calendarRect.bottom < 0;
+      
+      if (hasScrolledPastCalendar) {
+        backButton.style.opacity = '1';
+        backButton.style.transform = 'translateY(0)';
+        backButton.style.pointerEvents = 'auto';
+      } else {
+        backButton.style.opacity = '0';
+        backButton.style.transform = 'translateY(8px)';
+        backButton.style.pointerEvents = 'none';
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
     observer.observe(calendar);
+    
+    // Initial check
+    handleScroll();
   }
 </script> 
