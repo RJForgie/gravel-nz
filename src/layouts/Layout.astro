@@ -36,27 +36,22 @@ const canonicalURL = new URL(
 		<meta name="author" content="Gravel NZ" />
 		<meta name="robots" content="index, follow" />
 		
-		<!-- Canonical URL -->
 		<link rel="canonical" href={canonicalURL} />
 		
-		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		
-		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={new URL('/og-image.jpg', canonicalURL)} />
 		
-		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={canonicalURL} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL('/og-image.jpg', canonicalURL)} />
 		
-		<!-- JSON-LD for Event Organization -->
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -76,7 +71,6 @@ const canonicalURL = new URL(
 		<title>{title}</title>
 	</head>
 	<body>
-		<!-- Header with logo -->
 		<header class="hidden lg:block fixed top-0 left-0 right-0 z-50 
 		               px-6 py-4">
 			<div class="flex items-center justify-between">

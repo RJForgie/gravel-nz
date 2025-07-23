@@ -11,7 +11,6 @@ import HeroContent from '../components/HeroContent.astro';
 
 <Layout title="Gravel NZ - New Zealand's Gravel Races" description="Find upcoming gravel races in Aotearoa">
 	<div class="relative min-h-screen">
-		{/* Full-width background image - restored original effects */}
 		<div class="fixed inset-0 -z-10">
 			<Image
 				src={gravelImage}
@@ -19,30 +18,25 @@ import HeroContent from '../components/HeroContent.astro';
 				class="h-full w-full object-cover"
 				loading="eager"
 			/>
-			{/* Base gradient overlay */}
 			<div class="absolute inset-0 
 			             bg-gradient-to-br from-neutral-950/80 to-neutral-900/75 
 			             mix-blend-multiply">
 			</div>
 			
-			{/* Additional right side gradient for more opacity */}
 			<div class="absolute inset-0 
 			             bg-gradient-to-r from-transparent via-neutral-950/40 to-neutral-950/90">
 			</div>
 			
-			{/* Right side blur overlay */}
 			<div class="absolute right-0 top-0 bottom-0 w-1/2 
 			             backdrop-blur-[2px] md:backdrop-blur-[3px]">
 			</div>
 
-			{/* Additional vignette for left panel content */}
 			<div class="absolute inset-0 
 			             bg-gradient-to-t from-neutral-950/80 via-neutral-950/25 to-transparent">
 			</div>
 		</div>
 
 		<div class="flex flex-col lg:flex-row relative">
-			{/* Left panel content - hidden on mobile/tablet */}
 			<div class="hidden lg:block 
 			             lg:fixed lg:w-1/2 lg:h-screen">
 				<div class="relative h-full 
@@ -52,9 +46,7 @@ import HeroContent from '../components/HeroContent.astro';
 				</div>
 			</div>
 			
-			{/* Right panel content */}
 			<div class="w-full lg:w-1/2 lg:ml-[50%]">
-				{/* Hero content shown above month nav on mobile/tablet */}
 				<div class="block lg:hidden px-6 py-12">
 					<HeroContent />
 				</div>
