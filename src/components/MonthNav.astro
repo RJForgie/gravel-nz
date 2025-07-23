@@ -33,7 +33,7 @@ races.forEach(race => {
 });
 ---
 
-<nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-6">
+<nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-6" id="calendar">
   <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3">
     {months.map(({ key, date }) => {
       const month = date.toLocaleDateString('en-NZ', { month: 'long' });
@@ -65,7 +65,7 @@ races.forEach(race => {
             <span class="text-[10px] sm:text-xs opacity-75 font-medium">{year}</span>
           </span>
           <div class="absolute -top-1.5 -right-1.5">
-            <div class="bg-[#F2CC8F] text-neutral-900 text-[10px] font-bold rounded-full min-w-[20px] h-[20px] flex items-center justify-center px-1 shadow-lg">
+            <div class="bg-amber-500 text-neutral-900 text-[10px] font-bold rounded-full min-w-[20px] h-[20px] flex items-center justify-center px-1 shadow-lg">
               {raceCount}
             </div>
           </div>

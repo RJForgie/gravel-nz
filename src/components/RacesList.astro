@@ -51,6 +51,28 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
   <div class="max-w-3xl mx-auto px-8">
     <MonthNav races={races} />
     
+    <!-- Floating Back to Calendar Button -->
+    <a 
+      href="#calendar"
+      class="fixed bottom-6 right-6 z-50
+             inline-flex items-center gap-2
+             px-4 py-3 rounded-full
+             bg-amber-500 text-neutral-900
+             shadow-xl hover:shadow-2xl
+             transition-all duration-300
+             opacity-0 translate-y-2
+             hover:bg-amber-600 hover:-translate-y-1
+             focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-neutral-900
+             font-['Outfit'] font-semibold"
+      aria-label="Back to calendar navigation"
+      id="back-to-calendar"
+    >
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+      </svg>
+      <span class="text-sm font-bold">Calendar</span>
+    </a>
+    
     <div class="py-8 space-y-6">
       {racesWithMonthMarkers.map((raceWithMarker, index) => (
         <div>
@@ -100,4 +122,33 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
       </div>
     )}
   </div>
-</div> 
+</div>
+
+<script>
+  // Show/hide back to calendar button based on scroll position
+  const backButton = document.getElementById('back-to-calendar');
+  const calendar = document.getElementById('calendar');
+  
+  if (backButton && calendar) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Calendar is visible, hide button
+            backButton.style.opacity = '0';
+            backButton.style.transform = 'translateY(8px)';
+            backButton.style.pointerEvents = 'none';
+          } else {
+            // Calendar is not visible, show button
+            backButton.style.opacity = '1';
+            backButton.style.transform = 'translateY(0)';
+            backButton.style.pointerEvents = 'auto';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    observer.observe(calendar);
+  }
+</script> 
