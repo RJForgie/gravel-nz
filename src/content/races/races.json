@@ -134,6 +134,33 @@
       "registrationUrl": "https://themackenzierace.com/",
       "raceOptions": [170, 92, 77, 34],
       "tentative": false
+    },
+    {
+      "title": "Southern Cross CX - Round 5",
+      "date": "2025-07-27",
+      "location": "Christchurch, Canterbury",
+      "terrain": "cyclocross",
+      "registrationUrl": "https://www.southerncrosscx.com/race-info",
+      "raceOptions": [],
+      "tentative": false
+    },
+    {
+      "title": "Southern Cross CX - Round 6",
+      "date": "2025-08-17",
+      "location": "Christchurch, Canterbury",
+      "terrain": "cyclocross",
+      "registrationUrl": "https://www.southerncrosscx.com/race-info",
+      "raceOptions": [],
+      "tentative": false
+    },
+    {
+      "title": "NZ Cyclocross National Championships",
+      "date": "2025-08-31",
+      "location": "Blenheim, Marlborough",
+      "terrain": "cyclocross",
+      "registrationUrl": "https://www.cyclingnewzealand.nz/events-and-results/national-events/cyclo-cross-national-championships/",
+      "raceOptions": [],
+      "tentative": false
     }
   ]
 } 
