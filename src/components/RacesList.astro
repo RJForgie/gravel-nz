@@ -30,7 +30,6 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
   const date = new Date(race.date);
   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
   
-  // Check if this is the first race of a new month
   const isFirstOfMonth = index === 0 || 
     races[index - 1] && new Date(races[index - 1].date).getMonth() !== date.getMonth() ||
     races[index - 1] && new Date(races[index - 1].date).getFullYear() !== date.getFullYear();
@@ -51,7 +50,6 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
   <div class="max-w-3xl mx-auto px-8">
     <MonthNav races={races} />
     
-    <!-- Floating Back to Calendar Button -->
     <a 
       href="#calendar"
       class="fixed bottom-6 right-6 z-50
@@ -125,7 +123,6 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
 </div>
 
 <script>
-  // Show/hide back to calendar button based on scroll position
   const backButton = document.getElementById('back-to-calendar');
   const calendar = document.getElementById('calendar');
   
@@ -134,12 +131,10 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Calendar is visible, hide button
             backButton.style.opacity = '0';
             backButton.style.transform = 'translateY(8px)';
             backButton.style.pointerEvents = 'none';
           } else {
-            // Calendar is not visible, show button
             backButton.style.opacity = '1';
             backButton.style.transform = 'translateY(0)';
             backButton.style.pointerEvents = 'auto';

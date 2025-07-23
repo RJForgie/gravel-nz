@@ -19,7 +19,6 @@ const {
 	description = "Discover and explore New Zealand's best gravel cycling events. Find upcoming gravel races, epic adventures, and challenging routes across Aotearoa's stunning landscapes."
 } = Astro.props;
 
-// Generate canonical URL safely
 const canonicalURL = new URL(
 	Astro.url.pathname,
 	Astro.site || 'http://localhost:4321'
@@ -36,7 +35,6 @@ const canonicalURL = new URL(
 		<meta name="author" content="Gravel NZ" />
 		<meta name="robots" content="index, follow" />
 		
-		<!-- Basic Security Headers -->
 		<meta http-equiv="X-Content-Type-Options" content="nosniff" />
 		
 		<link rel="canonical" href={canonicalURL} />
