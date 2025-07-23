@@ -36,6 +36,10 @@ const canonicalURL = new URL(
 		<meta name="author" content="Gravel NZ" />
 		<meta name="robots" content="index, follow" />
 		
+		<!-- Basic Security Headers -->
+		<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+		<meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+		
 		<link rel="canonical" href={canonicalURL} />
 		
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
