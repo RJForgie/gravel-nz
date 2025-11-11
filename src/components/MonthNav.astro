@@ -14,83 +14,81 @@ interface Props {
 
 const { races } = Astro.props;
 
-const now = new Date();
-now.setHours(0, 0, 0, 0);
-
-const months = Array.from({ length: 12 }, (_, i) => {
-  const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
-  return {
-    key: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`,
-    date: date
-  };
-});
-
+// Count races per month
 const monthsWithRaces = new Map();
 races.forEach(race => {
   const date = new Date(race.date);
   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
   monthsWithRaces.set(monthKey, (monthsWithRaces.get(monthKey) || 0) + 1);
 });
+
+// Prepare data for client-side rendering
+const raceData = Array.from(monthsWithRaces.entries()).map(([key, count]) => ({ key, count }));
 ---
 
 <nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-6" id="calendar">
-  <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3">
-    {months.map(({ key, date }) => {
-      const month = date.toLocaleDateString('en-NZ', { month: 'long' });
-      const year = date.getFullYear();
-      const isCurrent = date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
-      const raceCount = monthsWithRaces.get(key) || 0;
-      const hasRaces = raceCount > 0;
-      
-      return hasRaces ? (
-        <a
-          href={`#${key}`}
-          class={`font-['Outfit'] group relative
-                  flex flex-col items-center justify-center
-                  px-3 sm:px-4 py-3 sm:py-4
-                  text-sm font-semibold
-                  rounded-sm backdrop-blur-sm
-                  shadow-lg ring-1 ring-inset
-                  transition-all duration-200
-                  focus:outline-none focus:ring-2
-                  pointer-coarse:px-4 pointer-coarse:py-4 ${
-            isCurrent 
-              ? 'bg-[#6B7B6B] text-neutral-200 ring-[#4A5A4A]/50 hover:bg-[#7B8B7B] hover:shadow-xl hover:scale-105 focus:ring-[#4A5A4A]'
-              : 'bg-neutral-900/70 text-neutral-300 ring-neutral-700/50 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl hover:scale-105 focus:ring-neutral-500'
-          }`}
-          aria-label={`View ${raceCount} race${raceCount !== 1 ? 's' : ''} for ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
-        >
-          <span class="flex flex-col items-center gap-1">
-            <span class="font-bold text-xs sm:text-sm tracking-wide">{month}</span>
-            <span class="text-[10px] sm:text-xs opacity-75 font-medium">{year}</span>
-          </span>
-          <div class="absolute -top-1.5 -right-1.5">
-            <div class="bg-amber-500 text-neutral-900 text-[10px] font-bold rounded-full min-w-[20px] h-[20px] flex items-center justify-center px-1 shadow-lg">
-              {raceCount}
-            </div>
+  <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3" id="month-nav-grid"></div>
+</nav>
+
+<script define:vars={{ raceData }}>
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  // Create map of race counts by month key
+  const raceCounts = new Map(raceData.map(d => [d.key, d.count]));
+
+  // Generate 12 months starting from current month
+  const grid = document.getElementById('month-nav-grid');
+
+  for (let i = 0; i < 12; i++) {
+    const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
+    const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+    const month = date.toLocaleDateString('en-NZ', { month: 'long' });
+    const year = date.getFullYear();
+    const isCurrentMonth = i === 0;
+    const raceCount = raceCounts.get(monthKey) || 0;
+    const hasRaces = raceCount > 0;
+
+    const pill = document.createElement('div');
+
+    if (hasRaces) {
+      const link = document.createElement('a');
+      link.href = `#${monthKey}`;
+      link.className = `font-['Outfit'] group relative flex flex-col items-center justify-center px-3 sm:px-4 py-3 sm:py-4 text-sm font-semibold rounded-sm backdrop-blur-sm shadow-lg ring-1 ring-inset transition-all duration-200 focus:outline-none focus:ring-2 pointer-coarse:px-4 pointer-coarse:py-4 ${
+        isCurrentMonth
+          ? 'bg-[#6B7B6B] text-neutral-200 ring-[#4A5A4A]/50 hover:bg-[#7B8B7B] hover:shadow-xl hover:scale-105 focus:ring-[#4A5A4A]'
+          : 'bg-neutral-900/70 text-neutral-300 ring-neutral-700/50 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl hover:scale-105 focus:ring-neutral-500'
+      }`;
+      link.setAttribute('aria-label', `View ${raceCount} race${raceCount !== 1 ? 's' : ''} for ${month} ${year}${isCurrentMonth ? ' (current month)' : ''}`);
+      link.innerHTML = `
+        <span class="flex flex-col items-center gap-1">
+          <span class="font-bold text-xs sm:text-sm tracking-wide">${month}</span>
+          <span class="text-[10px] sm:text-xs opacity-75 font-medium">${year}</span>
+        </span>
+        <div class="absolute -top-1.5 -right-1.5">
+          <div class="bg-amber-500 text-neutral-900 text-[10px] font-bold rounded-full min-w-[20px] h-[20px] flex items-center justify-center px-1 shadow-lg">
+            ${raceCount}
           </div>
-        </a>
-      ) : (
-        <div
-          class={`font-['Outfit'] relative
-                  flex flex-col items-center justify-center
-                  px-3 sm:px-4 py-3 sm:py-4
-                  text-sm font-semibold
-                  rounded-sm backdrop-blur-sm
-                  shadow-lg ring-1 ring-inset
-                  transition-all duration-200 ${
-            isCurrent 
-              ? 'bg-[#6B7B6B]/60 text-neutral-300 ring-[#4A5A4A]/30'
-              : 'bg-neutral-900/40 text-neutral-500 ring-neutral-700/30 cursor-not-allowed'
-          }`}
-          aria-label={`No races in ${month} ${year}${isCurrent ? ' (current month)' : ''}`}
-        >
-          <span class="flex flex-col items-center gap-1">
-            <span class="font-bold text-xs sm:text-sm tracking-wide">{month}</span>
-            <span class="text-[10px] sm:text-xs opacity-75 font-medium">{year}</span>
-          </span>
         </div>
-      );
-    })}
-  </div>
-</nav> 
+      `;
+      pill.appendChild(link);
+    } else {
+      const div = document.createElement('div');
+      div.className = `font-['Outfit'] relative flex flex-col items-center justify-center px-3 sm:px-4 py-3 sm:py-4 text-sm font-semibold rounded-sm backdrop-blur-sm shadow-lg ring-1 ring-inset transition-all duration-200 ${
+        isCurrentMonth
+          ? 'bg-[#6B7B6B]/60 text-neutral-300 ring-[#4A5A4A]/30'
+          : 'bg-neutral-900/40 text-neutral-500 ring-neutral-700/30 cursor-not-allowed'
+      }`;
+      div.setAttribute('aria-label', `No races in ${month} ${year}${isCurrentMonth ? ' (current month)' : ''}`);
+      div.innerHTML = `
+        <span class="flex flex-col items-center gap-1">
+          <span class="font-bold text-xs sm:text-sm tracking-wide">${month}</span>
+          <span class="text-[10px] sm:text-xs opacity-75 font-medium">${year}</span>
+        </span>
+      `;
+      pill.appendChild(div);
+    }
+
+    grid.appendChild(pill);
+  }
+</script> 

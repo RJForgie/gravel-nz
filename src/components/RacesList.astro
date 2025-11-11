@@ -13,11 +13,6 @@ interface Race {
   tentative?: boolean;
 }
 
-interface RaceWithMarker extends Race {
-  monthKey: string | null;
-  monthLabel: string | null;
-}
-
 async function getAllRaces() {
   const racesData = await getCollection('races');
   const allRaces = racesData[0].data.races as Race[];
@@ -25,25 +20,6 @@ async function getAllRaces() {
 }
 
 const races = await getAllRaces();
-
-const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
-  const date = new Date(race.date);
-  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-  
-  const isFirstOfMonth = index === 0 || 
-    races[index - 1] && new Date(races[index - 1].date).getMonth() !== date.getMonth() ||
-    races[index - 1] && new Date(races[index - 1].date).getFullYear() !== date.getFullYear();
-  
-  const monthLabel = isFirstOfMonth ? 
-    date.toLocaleDateString('en-NZ', { month: 'long', year: 'numeric' }) : 
-    null;
-  
-  return {
-    ...race,
-    monthKey: isFirstOfMonth ? monthKey : null,
-    monthLabel
-  };
-});
 ---
 
 <div class="max-w-5xl mx-auto">
@@ -73,67 +49,121 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
     </a>
     
     <div class="py-8 space-y-6">
-      {racesWithMonthMarkers.map((raceWithMarker, index) => (
-        <div>
-          {raceWithMarker.monthLabel && (
-            <div class={`${index > 0 ? 'mt-10 mb-6' : 'mb-6'} 
-                         flex items-center gap-3`}>
-              <div class="flex items-center gap-2.5
-                          px-3 py-2 rounded-sm
-                          bg-neutral-900/60 backdrop-blur-sm
-                          border border-neutral-700/30
-                          shadow-md">
-                <svg class="h-4 w-4 text-neutral-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"></path>
-                </svg>
-                <h2 
-                  id={raceWithMarker.monthKey || undefined}
-                  class="font-['Outfit'] text-base font-semibold
-                         text-neutral-200 tracking-wide scroll-mt-8"
-                >
-                  {raceWithMarker.monthLabel}
-                </h2>
+      {races.map((race, index) => {
+        const date = new Date(race.date);
+        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        const prevRace = races[index - 1];
+        const isFirstOfMonth = !prevRace ||
+          new Date(prevRace.date).getMonth() !== date.getMonth() ||
+          new Date(prevRace.date).getFullYear() !== date.getFullYear();
+        const monthLabel = isFirstOfMonth ?
+          date.toLocaleDateString('en-NZ', { month: 'long', year: 'numeric' }) :
+          null;
+
+        return (
+          <div data-race-date={race.date} data-month-key={monthKey} class="race-item">
+            {monthLabel && (
+              <div class={`month-header ${index > 0 ? 'mt-10 mb-6' : 'mb-6'} flex items-center gap-3`}
+                   data-month-key={monthKey}>
+                <div class="flex items-center gap-2.5
+                            px-3 py-2 rounded-sm
+                            bg-neutral-900/60 backdrop-blur-sm
+                            border border-neutral-700/30
+                            shadow-md">
+                  <svg class="h-4 w-4 text-neutral-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"></path>
+                  </svg>
+                  <h2
+                    id={monthKey}
+                    class="font-['Outfit'] text-base font-semibold
+                           text-neutral-200 tracking-wide scroll-mt-8"
+                  >
+                    {monthLabel}
+                  </h2>
+                </div>
+                <div class="flex-1 h-px
+                            bg-gradient-to-r from-neutral-700/50 via-neutral-600/30 to-transparent">
+                </div>
               </div>
-              <div class="flex-1 h-px 
-                          bg-gradient-to-r from-neutral-700/50 via-neutral-600/30 to-transparent">
-              </div>
+            )}
+            <div class="transition-transform duration-300 hover:-translate-y-1 will-change-transform">
+              <RaceCard race={race} />
             </div>
-          )}
-          <div class="transition-transform duration-300 hover:-translate-y-1 will-change-transform">
-            <RaceCard race={raceWithMarker} />
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
 
-    {races.length === 0 && (
-      <div class="text-center py-16">
-        <div class="mx-auto max-w-md 
-                    p-8 rounded-sm
-                    bg-neutral-900/60 backdrop-blur-sm
-                    border border-neutral-700/50">
-          <svg class="mx-auto mb-4 h-12 w-12 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 8l-2-2m0 0l-2-2m2 2l2-2m-2 2l2 2"/>
-          </svg>
-          <p class="mb-2 text-lg font-medium text-neutral-300">No upcoming races at the moment</p>
-          <p class="text-sm text-neutral-400">Check back soon for new adventures!</p>
-        </div>
+    <div id="no-races-message" class="text-center py-16" style="display: none;">
+      <div class="mx-auto max-w-md
+                  p-8 rounded-sm
+                  bg-neutral-900/60 backdrop-blur-sm
+                  border border-neutral-700/50">
+        <svg class="mx-auto mb-4 h-12 w-12 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 8l-2-2m0 0l-2-2m2 2l2-2m-2 2l2 2"/>
+        </svg>
+        <p class="mb-2 text-lg font-medium text-neutral-300">No upcoming races at the moment</p>
+        <p class="text-sm text-neutral-400">Check back soon for new adventures!</p>
       </div>
-    )}
+    </div>
   </div>
 </div>
 
 <script>
+  // Filter past races on page load
+  function filterPastRaces() {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+
+    const raceItems = document.querySelectorAll('.race-item');
+    const monthsWithVisibleRaces = new Set();
+    let visibleRaceCount = 0;
+
+    // First pass: hide past races and track which months have visible races
+    raceItems.forEach(item => {
+      const raceDate = new Date(item.getAttribute('data-race-date') || '');
+      const monthKey = item.getAttribute('data-month-key');
+
+      if (raceDate < now) {
+        item.style.display = 'none';
+      } else {
+        visibleRaceCount++;
+        if (monthKey) {
+          monthsWithVisibleRaces.add(monthKey);
+        }
+      }
+    });
+
+    // Second pass: hide month headers that have no visible races
+    const monthHeaders = document.querySelectorAll('.month-header');
+    monthHeaders.forEach(header => {
+      const monthKey = header.getAttribute('data-month-key');
+      if (monthKey && !monthsWithVisibleRaces.has(monthKey)) {
+        header.style.display = 'none';
+      }
+    });
+
+    // Show/hide "no races" message
+    const noRacesMessage = document.getElementById('no-races-message');
+    if (noRacesMessage) {
+      noRacesMessage.style.display = visibleRaceCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  // Run on page load
+  filterPastRaces();
+
+  // Back to calendar button logic
   const backButton = document.getElementById('back-to-calendar');
   const calendar = document.getElementById('calendar');
-  
+
   if (backButton && calendar) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const calendarRect = calendar.getBoundingClientRect();
           const hasScrolledPastCalendar = calendarRect.bottom < 0;
-          
+
           if (hasScrolledPastCalendar) {
             // User has scrolled past the calendar, show button
             backButton.style.opacity = '1';
@@ -149,12 +179,12 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
       },
       { threshold: 0 }
     );
-    
+
     // Also listen to scroll events for more responsive behavior
     const handleScroll = () => {
       const calendarRect = calendar.getBoundingClientRect();
       const hasScrolledPastCalendar = calendarRect.bottom < 0;
-      
+
       if (hasScrolledPastCalendar) {
         backButton.style.opacity = '1';
         backButton.style.transform = 'translateY(0)';
@@ -165,10 +195,10 @@ const racesWithMonthMarkers: RaceWithMarker[] = races.map((race, index) => {
         backButton.style.pointerEvents = 'none';
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     observer.observe(calendar);
-    
+
     // Initial check
     handleScroll();
   }
