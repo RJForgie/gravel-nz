@@ -24,7 +24,7 @@
 			"location": "Cheviot, Canterbury",
 			"terrain": "gravel",
 			"registrationUrl": "https://www.muddygumbootevents.com/ecg",
-			"raceOptions": [118],
+			"raceOptions": [118, 74],
 			"tentative": false
 		},
 		{
@@ -75,7 +75,7 @@
 		{
 			"title": "Tuatara 1000",
 			"date": "2026-02-28",
-			"location": "Banks Peninsula, Canterbury",
+			"location": "Gore, Southland",
 			"terrain": "bikepacking",
 			"registrationUrl": "https://www.greatkiwigravel.com/tuatara-1000",
 			"raceOptions": [1070, 500, 300],
@@ -159,6 +159,60 @@
 			"location": "Blenheim, Marlborough",
 			"terrain": "cyclocross",
 			"registrationUrl": "https://www.cyclingnewzealand.nz/events-and-results/national-events/cyclo-cross-national-championships/",
+			"raceOptions": [],
+			"tentative": false
+		},
+		{
+			"title": "The Reset Brevet",
+			"date": "2026-02-20",
+			"location": "Wanaka, Otago",
+			"terrain": "bikepacking",
+			"registrationUrl": "https://www.resetbrevet.com/",
+			"raceOptions": [550, 370],
+			"tentative": false
+		},
+		{
+			"title": "Crop Duster",
+			"date": "2026-02-22",
+			"location": "Alexandra, Otago",
+			"terrain": "gravel",
+			"registrationUrl": "https://gravelinparadise.co.nz/crop-duster.php",
+			"raceOptions": [57, 45],
+			"tentative": false
+		},
+		{
+			"title": "Puketapu Gravel 'n' Tar",
+			"date": "2026-03-22",
+			"location": "Palmerston, Otago",
+			"terrain": "gravel",
+			"registrationUrl": "https://gravelinparadise.co.nz/puketapu-gravel-n-tar.php",
+			"raceOptions": [65, 50],
+			"tentative": false
+		},
+		{
+			"title": "Matakanui Express",
+			"date": "2026-04-19",
+			"location": "Omakau, Otago",
+			"terrain": "gravel",
+			"registrationUrl": "https://gravelinparadise.co.nz/matakanui-express.html",
+			"raceOptions": [100, 50],
+			"tentative": false
+		},
+		{
+			"title": "White Rocks",
+			"date": "2026-05-09",
+			"location": "Enfield, Otago",
+			"terrain": "gravel",
+			"registrationUrl": "https://gravelinparadise.co.nz/white-rocks.php",
+			"raceOptions": [63, 46],
+			"tentative": false
+		},
+		{
+			"title": "NZ Cyclocross National Championships",
+			"date": "2026-08-30",
+			"location": "Taupō, Waikato",
+			"terrain": "cyclocross",
+			"registrationUrl": "https://www.cyclingnewzealand.nz/cyclocross-national-championships/",
 			"raceOptions": [],
 			"tentative": false
 		}
