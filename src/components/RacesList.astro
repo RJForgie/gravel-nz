@@ -1,22 +1,24 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import RaceCard from "@/components/RaceCard.astro";
 import MonthNav from "@/components/MonthNav.astro";
 
 interface Race {
-  title: string;
-  date: string;
-  location: string;
-  terrain: string;
-  registrationUrl?: string;
-  raceOptions: number[];
-  tentative?: boolean;
+	title: string;
+	date: string;
+	location: string;
+	terrain: string;
+	registrationUrl?: string;
+	raceOptions: number[];
+	tentative?: boolean;
 }
 
 async function getAllRaces() {
-  const racesData = await getCollection('races');
-  const allRaces = racesData[0].data.races as Race[];
-  return allRaces.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+	const racesData = await getCollection("races");
+	const allRaces = racesData[0].data.races as Race[];
+	return allRaces.sort(
+		(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+	);
 }
 
 const races = await getAllRaces();

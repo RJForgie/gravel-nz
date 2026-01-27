@@ -1,29 +1,32 @@
 ---
 interface Race {
-  title: string;
-  date: string;
-  location: string;
-  terrain: string;
-  registrationUrl?: string;
-  raceOptions: number[];
+	title: string;
+	date: string;
+	location: string;
+	terrain: string;
+	registrationUrl?: string;
+	raceOptions: number[];
 }
 
 interface Props {
-  races: Race[];
+	races: Race[];
 }
 
 const { races } = Astro.props;
 
 // Count races per month
 const monthsWithRaces = new Map();
-races.forEach(race => {
-  const date = new Date(race.date);
-  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-  monthsWithRaces.set(monthKey, (monthsWithRaces.get(monthKey) || 0) + 1);
+races.forEach((race) => {
+	const date = new Date(race.date);
+	const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+	monthsWithRaces.set(monthKey, (monthsWithRaces.get(monthKey) || 0) + 1);
 });
 
 // Prepare data for client-side rendering
-const raceData = Array.from(monthsWithRaces.entries()).map(([key, count]) => ({ key, count }));
+const raceData = Array.from(monthsWithRaces.entries()).map(([key, count]) => ({
+	key,
+	count,
+}));
 ---
 
 <nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-6" id="calendar">

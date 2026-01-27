@@ -1,27 +1,27 @@
 ---
-import '../styles/global.css';
-import '@fontsource/outfit/400.css';
-import '@fontsource/outfit/500.css';
-import '@fontsource/outfit/600.css';
-import '@fontsource/outfit/700.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
+import "../styles/global.css";
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/600.css";
+import "@fontsource/outfit/700.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const { 
+const {
 	title = "Gravel NZ - New Zealand's Premier Gravel Cycling Events",
-	description = "Discover and explore New Zealand's best gravel cycling events. Find upcoming gravel races, epic adventures, and challenging routes across Aotearoa's stunning landscapes."
+	description = "Discover and explore New Zealand's best gravel cycling events. Find upcoming gravel races, epic adventures, and challenging routes across Aotearoa's stunning landscapes.",
 } = Astro.props;
 
 const canonicalURL = new URL(
 	Astro.url.pathname,
-	Astro.site || 'http://localhost:4321'
+	Astro.site || "http://localhost:4321",
 ).toString();
 ---
 

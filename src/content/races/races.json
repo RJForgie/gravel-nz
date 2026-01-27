@@ -1,166 +1,166 @@
 {
-  "races": [
-    {
-      "title": "The Graveller",
-      "date": "2026-02-14",
-      "location": "Hanmer Springs, Canterbury",
-      "terrain": "gravel",
-      "registrationUrl": "https://cjmsevents.co.nz/our-events/the-graveler",
-      "raceOptions": [132],
-      "tentative": false
-    },
-    {
-      "title": "Edition Zero Gravel",
-      "date": "2025-11-29",
-      "location": "Waimate, Canterbury",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.greatkiwigravel.com/editionzerogravel",
-      "raceOptions": [248, 137, 84, 51],
-      "tentative": false
-    },
-    {
-      "title": "East Coast Gravel",
-      "date": "2026-03-14",
-      "location": "Cheviot, Canterbury",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.muddygumbootevents.com/ecg",
-      "raceOptions": [118],
-      "tentative": false
-    },
-    {
-      "title": "Glenorchy Grind",
-      "date": "2025-10-11",
-      "location": "Glenorchy, Southern Alps",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.glenorchygrind.co.nz/",
-      "raceOptions": [160, 86, 57],
-      "tentative": false
-    },
-    {
-      "title": "Gravel Grind",
-      "date": "2025-11-29",
-      "location": "Taupō, Waikato",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.cyclechallenge.com/gravel-grind",
-      "raceOptions": [83],
-      "tentative": false
-    },
-    {
-      "title": "Ride the Wilderness",
-      "date": "2025-11-15",
-      "location": "Ross, West Coast",
-      "terrain": "gravel",
-      "registrationUrl": "https://cjmsevents.co.nz/our-events/ride-the-wilderness/",
-      "raceOptions": [126, 95, 59, 21],
-      "tentative": false
-    },
-    {
-      "title": "Tour Aotearoa",
-      "date": "2026-02-19",
-      "location": "Cape Reinga, Northland",
-      "terrain": "bikepacking",
-      "registrationUrl": "http://www.touraotearoa.nz/",
-      "raceOptions": [3000],
-      "tentative": false
-    },
-    {
-      "title": "Le Petit Brevet",
-      "date": "2025-11-8",
-      "location": "Banks Peninsula, Canterbury",
-      "terrain": "bikepacking",
-      "registrationUrl": "https://www.greatkiwigravel.com/le-petit-brevet",
-      "raceOptions": [300, 200],
-      "tentative": false
-    },
-    {
-      "title": "Tuatara 1000",
-      "date": "2026-02-28",
-      "location": "Banks Peninsula, Canterbury",
-      "terrain": "bikepacking",
-      "registrationUrl": "https://www.greatkiwigravel.com/tuatara-1000",
-      "raceOptions": [1070, 500, 300],
-      "tentative": false
-    },
-    {
-      "title": "The Karioi Classic",
-      "date": "2025-07-27",
-      "location": "Raglan, Waikato",
-      "terrain": "gravel",
-      "registrationUrl": "https://goraglan.com/raglan-events/karioi-classic-2025/",
-      "raceOptions": [85, 58],
-      "tentative": false
-    },
-    {
-      "title": "Wairarapa Gravel Series - Round #1",
-      "date": "2025-08-03",
-      "location": "Mauriceville, Wairarapa",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-1",
-      "raceOptions": [92, 46],
-      "tentative": false
-    },
-    {
-      "title": "Wairarapa Gravel Series - Round #2",
-      "date": "2025-08-17",
-      "location": "Wainuioru, Wairarapa",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-2",
-      "raceOptions": [74, 57, 40],
-      "tentative": false
-    },
-    {
-      "title": "Wairarapa Gravel Series - Round #3",
-      "date": "2025-08-31",
-      "location": "Mauriceville, Wairarapa",
-      "terrain": "gravel",
-      "registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-3",
-      "raceOptions": [92, 46],
-      "tentative": false
-    },
-    {
-      "title": "Tour Te Waipounamu",
-      "date": "2026-01-25",
-      "location": "Cape Farewell, Tasman",
-      "terrain": "bikepacking",
-      "registrationUrl": "https://www.tourtewaipounamu.co.nz/",
-      "raceOptions": [1331],
-      "tentative": false
-    },
-    {
-      "title": "The Mackenzie",
-      "date": "2026-04-11",
-      "location": "Lake Tekapo, Canterbury",
-      "terrain": "gravel",
-      "registrationUrl": "https://themackenzierace.com/",
-      "raceOptions": [170, 92, 77, 34],
-      "tentative": false
-    },
-    {
-      "title": "Southern Cross CX - Round 5",
-      "date": "2025-07-27",
-      "location": "Christchurch, Canterbury",
-      "terrain": "cyclocross",
-      "registrationUrl": "https://www.southerncrosscx.com/race-info",
-      "raceOptions": [],
-      "tentative": false
-    },
-    {
-      "title": "Southern Cross CX - Round 6",
-      "date": "2025-08-17",
-      "location": "Christchurch, Canterbury",
-      "terrain": "cyclocross",
-      "registrationUrl": "https://www.southerncrosscx.com/race-info",
-      "raceOptions": [],
-      "tentative": false
-    },
-    {
-      "title": "NZ Cyclocross National Championships",
-      "date": "2025-08-31",
-      "location": "Blenheim, Marlborough",
-      "terrain": "cyclocross",
-      "registrationUrl": "https://www.cyclingnewzealand.nz/events-and-results/national-events/cyclo-cross-national-championships/",
-      "raceOptions": [],
-      "tentative": false
-    }
-  ]
-} 
+	"races": [
+		{
+			"title": "The Graveller",
+			"date": "2026-02-14",
+			"location": "Hanmer Springs, Canterbury",
+			"terrain": "gravel",
+			"registrationUrl": "https://cjmsevents.co.nz/our-events/the-graveler",
+			"raceOptions": [132],
+			"tentative": false
+		},
+		{
+			"title": "Edition Zero Gravel",
+			"date": "2025-11-29",
+			"location": "Waimate, Canterbury",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.greatkiwigravel.com/editionzerogravel",
+			"raceOptions": [248, 137, 84, 51],
+			"tentative": false
+		},
+		{
+			"title": "East Coast Gravel",
+			"date": "2026-03-14",
+			"location": "Cheviot, Canterbury",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.muddygumbootevents.com/ecg",
+			"raceOptions": [118],
+			"tentative": false
+		},
+		{
+			"title": "Glenorchy Grind",
+			"date": "2025-10-11",
+			"location": "Glenorchy, Southern Alps",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.glenorchygrind.co.nz/",
+			"raceOptions": [160, 86, 57],
+			"tentative": false
+		},
+		{
+			"title": "Gravel Grind",
+			"date": "2025-11-29",
+			"location": "Taupō, Waikato",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.cyclechallenge.com/gravel-grind",
+			"raceOptions": [83],
+			"tentative": false
+		},
+		{
+			"title": "Ride the Wilderness",
+			"date": "2025-11-15",
+			"location": "Ross, West Coast",
+			"terrain": "gravel",
+			"registrationUrl": "https://cjmsevents.co.nz/our-events/ride-the-wilderness/",
+			"raceOptions": [126, 95, 59, 21],
+			"tentative": false
+		},
+		{
+			"title": "Tour Aotearoa",
+			"date": "2026-02-19",
+			"location": "Cape Reinga, Northland",
+			"terrain": "bikepacking",
+			"registrationUrl": "http://www.touraotearoa.nz/",
+			"raceOptions": [3000],
+			"tentative": false
+		},
+		{
+			"title": "Le Petit Brevet",
+			"date": "2025-11-8",
+			"location": "Banks Peninsula, Canterbury",
+			"terrain": "bikepacking",
+			"registrationUrl": "https://www.greatkiwigravel.com/le-petit-brevet",
+			"raceOptions": [300, 200],
+			"tentative": false
+		},
+		{
+			"title": "Tuatara 1000",
+			"date": "2026-02-28",
+			"location": "Banks Peninsula, Canterbury",
+			"terrain": "bikepacking",
+			"registrationUrl": "https://www.greatkiwigravel.com/tuatara-1000",
+			"raceOptions": [1070, 500, 300],
+			"tentative": false
+		},
+		{
+			"title": "The Karioi Classic",
+			"date": "2025-07-27",
+			"location": "Raglan, Waikato",
+			"terrain": "gravel",
+			"registrationUrl": "https://goraglan.com/raglan-events/karioi-classic-2025/",
+			"raceOptions": [85, 58],
+			"tentative": false
+		},
+		{
+			"title": "Wairarapa Gravel Series - Round #1",
+			"date": "2025-08-03",
+			"location": "Mauriceville, Wairarapa",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-1",
+			"raceOptions": [92, 46],
+			"tentative": false
+		},
+		{
+			"title": "Wairarapa Gravel Series - Round #2",
+			"date": "2025-08-17",
+			"location": "Wainuioru, Wairarapa",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-2",
+			"raceOptions": [74, 57, 40],
+			"tentative": false
+		},
+		{
+			"title": "Wairarapa Gravel Series - Round #3",
+			"date": "2025-08-31",
+			"location": "Mauriceville, Wairarapa",
+			"terrain": "gravel",
+			"registrationUrl": "https://www.acm.kiwi.nz/event-details/wairarapa-gravel-series-round-3",
+			"raceOptions": [92, 46],
+			"tentative": false
+		},
+		{
+			"title": "Tour Te Waipounamu",
+			"date": "2026-01-25",
+			"location": "Cape Farewell, Tasman",
+			"terrain": "bikepacking",
+			"registrationUrl": "https://www.tourtewaipounamu.co.nz/",
+			"raceOptions": [1331],
+			"tentative": false
+		},
+		{
+			"title": "The Mackenzie",
+			"date": "2026-04-11",
+			"location": "Lake Tekapo, Canterbury",
+			"terrain": "gravel",
+			"registrationUrl": "https://themackenzierace.com/",
+			"raceOptions": [170, 92, 77, 34],
+			"tentative": false
+		},
+		{
+			"title": "Southern Cross CX - Round 5",
+			"date": "2025-07-27",
+			"location": "Christchurch, Canterbury",
+			"terrain": "cyclocross",
+			"registrationUrl": "https://www.southerncrosscx.com/race-info",
+			"raceOptions": [],
+			"tentative": false
+		},
+		{
+			"title": "Southern Cross CX - Round 6",
+			"date": "2025-08-17",
+			"location": "Christchurch, Canterbury",
+			"terrain": "cyclocross",
+			"registrationUrl": "https://www.southerncrosscx.com/race-info",
+			"raceOptions": [],
+			"tentative": false
+		},
+		{
+			"title": "NZ Cyclocross National Championships",
+			"date": "2025-08-31",
+			"location": "Blenheim, Marlborough",
+			"terrain": "cyclocross",
+			"registrationUrl": "https://www.cyclingnewzealand.nz/events-and-results/national-events/cyclo-cross-national-championships/",
+			"raceOptions": [],
+			"tentative": false
+		}
+	]
+}
