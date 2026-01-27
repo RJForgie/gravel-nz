@@ -1,75 +1,77 @@
 ---
 interface Race {
-  title: string;
-  date: string;
-  location: string;
-  terrain: string;
-  registrationUrl?: string;
-  raceOptions: number[];
-  tentative?: boolean;
+	title: string;
+	date: string;
+	location: string;
+	terrain: string;
+	registrationUrl?: string;
+	raceOptions: number[];
+	tentative?: boolean;
 }
 
 interface Props {
-  race: Race;
+	race: Race;
 }
 
 const { race } = Astro.props;
 
 function getRelativeDate(date: Date): string {
-  const now = new Date();
-  const diffDays = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-  
-  if (diffDays < 0) return 'Past event';
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Tomorrow';
-  if (diffDays < 7) return `In ${diffDays} days`;
-  if (diffDays < 30) return `In ${Math.ceil(diffDays / 7)} weeks`;
-  if (diffDays < 365) return `In ${Math.ceil(diffDays / 30)} months`;
-  return `In ${Math.ceil(diffDays / 365)} years`;
+	const now = new Date();
+	const diffDays = Math.ceil(
+		(date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+	);
+
+	if (diffDays < 0) return "Past event";
+	if (diffDays === 0) return "Today";
+	if (diffDays === 1) return "Tomorrow";
+	if (diffDays < 7) return `In ${diffDays} days`;
+	if (diffDays < 30) return `In ${Math.ceil(diffDays / 7)} weeks`;
+	if (diffDays < 365) return `In ${Math.ceil(diffDays / 30)} months`;
+	return `In ${Math.ceil(diffDays / 365)} years`;
 }
 
 const raceDate = new Date(race.date);
-const relativeDate = race.tentative ? 'Date TBC' : getRelativeDate(raceDate);
+const relativeDate = race.tentative ? "Date TBC" : getRelativeDate(raceDate);
 
 const getTerrainColors = (terrain: string) => {
-  switch (terrain) {
-    case 'gravel':
-      return {
-        gradient: 'from-[#C49B7A] via-[#A67C52] to-[#8B5A2B]',
-        button: {
-          text: 'text-[#E6B891]',
-          bg: 'bg-[#C49B7A]/10',
-          hoverBg: 'hover:bg-[#C49B7A]',
-          border: 'border-[#C49B7A]/30',
-          hoverBorder: 'hover:border-[#C49B7A]',
-          focus: 'focus:ring-[#C49B7A]/50'
-        }
-      };
-    case 'bikepacking':
-      return {
-        gradient: 'from-[#7A8BA4] via-[#5A6B84] to-[#3A4B64]',
-        button: {
-          text: 'text-[#9BB0C4]',
-          bg: 'bg-[#7A8BA4]/10',
-          hoverBg: 'hover:bg-[#7A8BA4]',
-          border: 'border-[#7A8BA4]/30',
-          hoverBorder: 'hover:border-[#7A8BA4]',
-          focus: 'focus:ring-[#7A8BA4]/50'
-        }
-      };
-    default:
-      return {
-        gradient: 'from-[#8B9B87] via-[#6B7B67] to-[#5A6B57]',
-        button: {
-          text: 'text-[#A8B8A4]',
-          bg: 'bg-[#8B9B87]/10',
-          hoverBg: 'hover:bg-[#8B9B87]',
-          border: 'border-[#8B9B87]/30',
-          hoverBorder: 'hover:border-[#8B9B87]',
-          focus: 'focus:ring-[#8B9B87]/50'
-        }
-      };
-  }
+	switch (terrain) {
+		case "gravel":
+			return {
+				gradient: "from-[#C49B7A] via-[#A67C52] to-[#8B5A2B]",
+				button: {
+					text: "text-[#E6B891]",
+					bg: "bg-[#C49B7A]/10",
+					hoverBg: "hover:bg-[#C49B7A]",
+					border: "border-[#C49B7A]/30",
+					hoverBorder: "hover:border-[#C49B7A]",
+					focus: "focus:ring-[#C49B7A]/50",
+				},
+			};
+		case "bikepacking":
+			return {
+				gradient: "from-[#7A8BA4] via-[#5A6B84] to-[#3A4B64]",
+				button: {
+					text: "text-[#9BB0C4]",
+					bg: "bg-[#7A8BA4]/10",
+					hoverBg: "hover:bg-[#7A8BA4]",
+					border: "border-[#7A8BA4]/30",
+					hoverBorder: "hover:border-[#7A8BA4]",
+					focus: "focus:ring-[#7A8BA4]/50",
+				},
+			};
+		default:
+			return {
+				gradient: "from-[#8B9B87] via-[#6B7B67] to-[#5A6B57]",
+				button: {
+					text: "text-[#A8B8A4]",
+					bg: "bg-[#8B9B87]/10",
+					hoverBg: "hover:bg-[#8B9B87]",
+					border: "border-[#8B9B87]/30",
+					hoverBorder: "hover:border-[#8B9B87]",
+					focus: "focus:ring-[#8B9B87]/50",
+				},
+			};
+	}
 };
 
 const terrainColors = getTerrainColors(race.terrain);
@@ -93,7 +95,10 @@ const terrainColors = getTerrainColors(race.terrain);
           <h3 class="font-['Outfit'] text-2xl font-bold leading-tight text-neutral-100 group-hover:text-white transition-colors tracking-tight">
             {race.title}
           </h3>
-          <div class={`text-sm font-medium px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${race.tentative ? 'text-amber-300 bg-amber-900/40' : 'text-neutral-400 bg-neutral-800/40'}`}>
+          <div
+            class={`countdown-pill text-sm font-medium px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${race.tentative ? 'text-amber-300 bg-amber-900/40' : 'text-neutral-400 bg-neutral-800/40'}`}
+            data-race-date={race.tentative ? undefined : race.date}
+          >
             {relativeDate}
           </div>
         </div>
@@ -180,4 +185,28 @@ const terrainColors = getTerrainColors(race.terrain);
       
     </div>
   </div>
-</div> 
+</div>
+
+<script>
+  function getRelativeDate(date: Date): string {
+    const now = new Date();
+    const diffDays = Math.ceil(
+      (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+    );
+
+    if (diffDays < 0) return "Past event";
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Tomorrow";
+    if (diffDays < 7) return `In ${diffDays} days`;
+    if (diffDays < 30) return `In ${Math.ceil(diffDays / 7)} weeks`;
+    if (diffDays < 365) return `In ${Math.ceil(diffDays / 30)} months`;
+    return `In ${Math.ceil(diffDays / 365)} years`;
+  }
+
+  document.querySelectorAll<HTMLElement>(".countdown-pill[data-race-date]").forEach((pill) => {
+    const dateStr = pill.dataset.raceDate;
+    if (dateStr) {
+      pill.textContent = getRelativeDate(new Date(dateStr));
+    }
+  });
+</script>
