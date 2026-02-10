@@ -32,6 +32,8 @@ function getRelativeDate(date: Date): string {
 
 const raceDate = new Date(race.date);
 const relativeDate = race.tentative ? "Date TBC" : getRelativeDate(raceDate);
+const daysUntilRace = Math.ceil((raceDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+const isWithinTwoWeeks = !race.tentative && daysUntilRace >= 0 && daysUntilRace <= 14;
 
 const getTerrainColors = (terrain: string) => {
 	switch (terrain) {
@@ -87,82 +89,80 @@ const terrainColors = getTerrainColors(race.terrain);
            hover:bg-neutral-800/95 hover:ring-neutral-600/70 hover:shadow-2xl
            will-change-transform"
   >
-    <div class={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${terrainColors.gradient}`}></div>
+    <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${terrainColors.gradient}`}></div>
     
-    <div class="p-6">
-      <div class="mb-6">
+    <div class="p-5">
+      <div class="mb-4">
         <div class="flex items-start justify-between mb-3">
           <h3 class="font-['Outfit'] text-2xl font-bold leading-tight text-neutral-100 group-hover:text-white transition-colors tracking-tight">
             {race.title}
           </h3>
           <div
-            class={`countdown-pill text-sm font-medium px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${race.tentative ? 'text-amber-300 bg-amber-900/40' : 'text-neutral-400 bg-neutral-800/40'}`}
+            class={`countdown-pill text-sm font-medium px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${race.tentative ? 'text-amber-300 bg-amber-900/40' : isWithinTwoWeeks ? 'text-amber-200 bg-amber-600/30 ring-1 ring-amber-500/40' : 'text-neutral-300 bg-neutral-700/50'}`}
             data-race-date={race.tentative ? undefined : race.date}
           >
             {relativeDate}
           </div>
         </div>
         
-        <div class="grid grid-cols-1 gap-3">
-          <div class="flex items-center gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div class="flex items-center gap-2">
             <svg class="h-4 w-4 text-neutral-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-            </svg>                  
-            <span class="text-base text-neutral-300 font-medium">{race.location}</span>
+            </svg>
+            <span class="text-sm text-neutral-300 font-medium">{race.location}</span>
           </div>
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
             <svg class="h-4 w-4 text-neutral-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
             </svg>
-            <time 
+            <time
               datetime={race.tentative ? undefined : race.date}
-              class={`text-base font-medium ${race.tentative ? 'text-amber-300' : 'text-neutral-300'}`}
+              class={`text-sm font-medium ${race.tentative ? 'text-amber-300' : 'text-neutral-300'}`}
             >
-              {race.tentative 
-                ? 'Date TBC' 
-                : raceDate.toLocaleDateString('en-NZ', { 
-                    weekday: 'long',
-                    month: 'long', 
+              {race.tentative
+                ? 'Date TBC'
+                : raceDate.toLocaleDateString('en-NZ', {
+                    weekday: 'short',
+                    month: 'short',
                     day: 'numeric'
                   })
               }
             </time>
           </div>
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
             <svg class="h-4 w-4 text-neutral-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
             </svg>
-            <span class={`text-base capitalize font-semibold ${terrainColors.button.text}`}>{race.terrain}</span>
+            <span class={`text-sm capitalize font-semibold ${terrainColors.button.text}`}>{race.terrain}</span>
           </div>
         </div>
       </div>
 
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         {race.raceOptions.length > 0 && (
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-2">
-              <svg class="h-4 w-4 text-neutral-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
-              </svg>
-              
-              <div class="grid grid-cols-1 sm:flex sm:flex-wrap gap-2">
-                {race.raceOptions.map((distance) => (
-                  <span
-                    class="px-3 py-1.5 text-neutral-100 rounded-full text-sm font-semibold border bg-neutral-800/80 border-neutral-700/50 hover:bg-neutral-700/80 transition-colors text-center"
-                  >
-                    {distance}km
-                  </span>
-                ))}
-              </div>
+          <div class="flex items-center gap-3">
+            <svg class="h-4 w-4 text-neutral-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+            </svg>
+            <div class="flex flex-wrap gap-2">
+              {race.raceOptions.map((distance) => (
+                <span
+                  class="px-3 py-1 text-neutral-100 rounded-full text-sm font-semibold border bg-neutral-800/80 border-neutral-700/50 hover:bg-neutral-700/80 transition-colors text-center"
+                >
+                  {distance}km
+                </span>
+              ))}
             </div>
           </div>
         )}
-        
+
         {race.registrationUrl && (
-          <a 
+          <a
             href={race.registrationUrl}
-            class={`inline-flex items-center gap-2
+            class={`inline-flex items-center justify-center gap-2
+                    w-full sm:w-auto
                     px-5 py-2.5 rounded-sm
                     text-sm font-semibold
                     border shadow-lg
