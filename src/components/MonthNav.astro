@@ -29,8 +29,8 @@ const raceData = Array.from(monthsWithRaces.entries()).map(([key, count]) => ({
 }));
 ---
 
-<nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-6" id="calendar">
-  <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3" id="month-nav-grid"></div>
+<nav aria-label="Race calendar navigation" class="max-w-3xl mx-auto py-4" id="calendar">
+  <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3 pt-3 pb-2 sm:pb-0" id="month-nav-grid"></div>
 </nav>
 
 <script define:vars={{ raceData }}>
@@ -55,11 +55,12 @@ const raceData = Array.from(monthsWithRaces.entries()).map(([key, count]) => ({
     const pill = document.createElement('div');
 
     if (hasRaces) {
+      pill.className = '';
       const link = document.createElement('a');
       link.href = `#${monthKey}`;
-      link.className = `font-['Outfit'] group relative flex flex-col items-center justify-center px-3 sm:px-4 py-3 sm:py-4 text-sm font-semibold rounded-sm backdrop-blur-sm shadow-lg ring-1 ring-inset transition-all duration-200 focus:outline-none focus:ring-2 pointer-coarse:px-4 pointer-coarse:py-4 ${
+      link.className = `font-['Outfit'] group relative flex flex-col items-center justify-center px-4 py-3 sm:px-4 sm:py-4 text-sm font-semibold rounded-sm backdrop-blur-sm shadow-lg ring-1 ring-inset transition-all duration-200 focus:outline-none focus:ring-2 ${
         isCurrentMonth
-          ? 'bg-[#6B7B6B] text-neutral-200 ring-[#4A5A4A]/50 hover:bg-[#7B8B7B] hover:shadow-xl hover:scale-105 focus:ring-[#4A5A4A]'
+          ? 'bg-amber-600/30 text-amber-100 ring-amber-500/50 hover:bg-amber-600/40 hover:shadow-xl hover:scale-105 focus:ring-amber-500'
           : 'bg-neutral-900/70 text-neutral-300 ring-neutral-700/50 hover:bg-neutral-800/80 hover:text-neutral-200 hover:shadow-xl hover:scale-105 focus:ring-neutral-500'
       }`;
       link.setAttribute('aria-label', `View ${raceCount} race${raceCount !== 1 ? 's' : ''} for ${month} ${year}${isCurrentMonth ? ' (current month)' : ''}`);
@@ -76,10 +77,12 @@ const raceData = Array.from(monthsWithRaces.entries()).map(([key, count]) => ({
       `;
       pill.appendChild(link);
     } else {
+      // Hide empty months on mobile, show on sm+
+      pill.className = 'hidden sm:block';
       const div = document.createElement('div');
       div.className = `font-['Outfit'] relative flex flex-col items-center justify-center px-3 sm:px-4 py-3 sm:py-4 text-sm font-semibold rounded-sm backdrop-blur-sm shadow-lg ring-1 ring-inset transition-all duration-200 ${
         isCurrentMonth
-          ? 'bg-[#6B7B6B]/60 text-neutral-300 ring-[#4A5A4A]/30'
+          ? 'bg-amber-600/20 text-amber-200/60 ring-amber-500/20'
           : 'bg-neutral-900/40 text-neutral-500 ring-neutral-700/30 cursor-not-allowed'
       }`;
       div.setAttribute('aria-label', `No races in ${month} ${year}${isCurrentMonth ? ' (current month)' : ''}`);
